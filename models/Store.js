@@ -74,7 +74,7 @@ storeSchema.statics.getTagsList = function() {
     return this.aggregate([
         { $unwind: '$tags' },
         { $group: { _id: '$tags', count: { $sum: 1 } } },
-        { $sort: { count: -1 } }
+        { $sort: { count: -1 } },
     ]);
 };
 
@@ -95,9 +95,9 @@ storeSchema.statics.getTopStores = function() {
       // sort it by our new field, highest reviews first
       { $sort: { averageRating: -1 }},
       // limit to at most 10
-      { $limit: 10 }
+      { $limit: 10 },
     ]);
-  }
+};
 
 storeSchema.virtual( 'reviews', {
     ref: 'Review',
