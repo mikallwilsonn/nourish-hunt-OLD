@@ -97,7 +97,7 @@ storeSchema.statics.getTopStores = function() {
       // limit to at most 10
       { $limit: 10 }
     ]);
-  }
+};
 
 storeSchema.virtual( 'reviews', {
     ref: 'Review',
