@@ -23,3 +23,9 @@ mixin storeCard(store = {})
                     .store__action.store__actuin--count
                         != h.icon('review')
                         span= store.reviews.length
+            if store.tags
+                ul.tags
+                    each tag in store.tags
+                        li.tag
+                            a.tag__link(href=`/tags/${tag}`)
+                                span.tag__text ##{tag}

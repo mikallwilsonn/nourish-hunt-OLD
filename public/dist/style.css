@@ -816,6 +816,9 @@ label {
   -ms-flex-pack: justify;
       justify-content: space-between; }
 
+.store__details ul.tags {
+  margin: auto; }
+
 .tags {
   margin: 0;
   padding: 0;
