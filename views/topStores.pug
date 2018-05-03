@@ -17,5 +17,7 @@ block content
                             img(width=200 src=`/uploads/${store.photo || 'store.png'}` alt=store.name)
                     td #{i + 1}
                     td: a(href=`/store/${store.slug}`)= store.name
-                    td #{Math.round(store.averageRating) * 10 / 10} /t
+                    td #{store.reviews.length}
+                    td #{Math.round(store.averageRating) * 10 / 10}
+                    
 
