@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const router = express.Router();
+const homeController = require( '../controllers/homeController' );
 const storeController = require( '../controllers/storeController' );
 const userController = require( '../controllers/userController' );
 const authController = require( '../controllers/authController' );
@@ -7,7 +8,8 @@ const reviewController = require( '../controllers/reviewController' );
 
 const { catchErrors } = require('../handlers/errorHandlers');
 
-router.get( '/', catchErrors( storeController.getStores ) );
+//router.get( '/', catchErrors( storeController.getStores ) );
+router.get( '/', catchErrors( homeController.home ));
 router.get( '/stores', catchErrors( storeController.getStores ) );
 router.get( '/stores/page/:page', catchErrors( storeController.getStores ) );
 router.get( '/add', 
