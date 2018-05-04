@@ -19,6 +19,9 @@ body {
     .inner {
       padding: 4rem 2rem; } }
 
+section.introduction {
+  padding: 50px 25px; }
+
 .footer {
   max-width: 1000px;
   margin: auto;
