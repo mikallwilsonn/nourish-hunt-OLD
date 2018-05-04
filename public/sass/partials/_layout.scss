@@ -23,7 +23,20 @@ body {
 }
 
 section.introduction {
-  padding:50px 25px;
+  background-position:center center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
+section.introduction p {
+  color:#FFF;
+}
+
+section.introduction div.bg-cover {
+  width:100%;
+  height:100%;
+  padding:100px 25px;
+  background-color:rgba(0,0,0,0.75);
 }
 
 .footer {
