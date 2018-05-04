@@ -14,11 +14,19 @@ body {
 
 .inner {
   max-width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 50px; }
+  margin: 0 auto; }
   @media all and (max-width: 900px) {
     .inner {
       padding: 4rem 2rem; } }
+
+section.introduction {
+  padding: 50px 25px; }
+
+.footer {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 25px; }
 
 html {
   box-sizing: border-box; }
@@ -499,6 +507,10 @@ p {
   text-align: center;
   -ms-transform: skew(0, -3deg) translateY(0px);
       transform: skew(0, -3deg) translateY(0px); }
+
+p.copyright {
+  text-align: center;
+  opacity: 0.75; }
 
 input, textarea {
   width: 100%;
