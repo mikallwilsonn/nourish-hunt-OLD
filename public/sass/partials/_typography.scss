@@ -45,7 +45,7 @@ p {
   font-size: 40px;
   z-index: 2;
   line-height:1.1;
-  transform: skew(0, -3deg);
+  transform: skew(0, -3deg) translateY(200px);
   &--long {
     font-size: 30px;
   }
@@ -66,6 +66,7 @@ p {
   a {
     border-bottom: 0;
     $yellowa: rgba($yellow,0.8);
+    padding:2px 20px;
     background-image: linear-gradient(to right, $yellowa 100%, $yellowa 50%);
   }
 }
@@ -75,4 +76,5 @@ p {
   margin-top: -9rem;
   font-size: 10rem;
   text-align: center;
+  transform: skew(0, -3deg) translateY(0px);
 }

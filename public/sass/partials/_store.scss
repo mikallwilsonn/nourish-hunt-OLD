@@ -1,14 +1,21 @@
 .stores {
   display:flex;
   flex-wrap:wrap;
+  justify-content:space-between;
   margin: -1.25em 0 0 -1.25em;
+  @media all and (max-width: 850px) {
+    justify-content:space-around;
+  }
 }
 
 .store {
   background:white;
   margin: 1.25em 0 0 1.25em;
-  width: calc(33.3333% - 1.25em);
+  /*width: calc(33.3333% - 1.25em);*/
+  width:48%;
   box-shadow: $shad;
+  transition:0.3s;
+  border-radius:3px;
   &--wide {
     width: 100%;
   }
@@ -27,16 +34,19 @@
   }
 }
 
+.store:hover {
+  transform: scale(1.05);
+}
+
 .store__actions {
   position: relative;
   z-index: 2;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.2);
-  margin-bottom: 50px;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  margin-top:50px;
   padding-top: 10px;
   padding-bottom: 20px;
   display: flex;
-  color: white;
+  color: black;
   align-items: center;
   justify-content: space-around;
 }
@@ -45,7 +55,7 @@
   font-size: 10px;
   svg {
     width: 25px;
-    fill: white
+    fill: black !important;
   }
   &--edit {
     a {
@@ -59,6 +69,7 @@
   position: relative;
   padding: 0 10px 0 10px;
   text-align: right;
+  height:250px;
   &:before {
     display: block;
     content: '';
@@ -72,7 +83,7 @@
       linear-gradient(135deg, hsla(219, 93%, 48%, 1) 10%, hsla(219, 93%, 48%, 0) 80%),
       linear-gradient(225deg, hsla(293, 93%, 48%, 1) 10%, hsla(293, 93%, 48%, 0) 80%),
       linear-gradient(315deg, hsla(130, 96%, 45%, 1) 100%, hsla(130, 96%, 45%, 0) 70%);
-    opacity: 0.6;
+    opacity: 0.3;
     z-index: 1;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
   }
@@ -87,3 +98,16 @@
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
   }
 }
+
+.store__details {
+  margin:auto;
+  padding: 50px 25px 25px 25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.store__details ul.tags {
+  margin:auto;
+}
+
