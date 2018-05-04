@@ -10,11 +10,13 @@
 @font-face {
   font-family: 'AlrightSans-Light';
   src: url('/fonts/AlrightSans-Light.oft') format('oft');
+  font-weight:200;
 }
 
 @font-face {
   font-family: 'AlrightSans-Medium';
   src: url('/fonts/AlrightSans-Medium.oft') format('oft');
+  font-weight:500;
 }
 
 html {
@@ -83,6 +85,24 @@ p {
 
 .introduction p {
   font-family: 'AlrightSans-Light';
+  font-size:1.5em;
+}
+
+.stats__table {
+  text-align:center;
+}
+
+.stats__table tr th {
+  font-family: 'AlrightSans-Light';
+  font-size:1.25em;
+}
+
+.stats__table tr th i {
+  display:block;
+}
+
+.stats__table tr td {
+  font-family: 'AlrightSans-Medium';
   font-size:1.5em;
 }
 

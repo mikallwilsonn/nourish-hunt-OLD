@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_storeCard
+include mixins/_siteStats
 
 block content
     section.introduction(style=`background-image:url(/uploads/${('store.png')})`)
@@ -8,6 +9,8 @@ block content
             .inner
                 != h.icon('spoon-knife')
                 p NourishHunt surfaces the best new locations, every day. It's a place for food and drink-loving enthusiasts to share and engage with others on their favorite places to go.
+                br
+                +siteStats(storesNum, usersNum, reviewsNum)
 
     .inner
         section

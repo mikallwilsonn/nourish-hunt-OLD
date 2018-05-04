@@ -33,6 +33,23 @@ section.introduction div.bg-cover {
   padding: 100px 25px;
   background-color: rgba(0, 0, 0, 0.75); }
 
+.stats__table {
+  width: 100%;
+  color: #FFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px; }
+
+.stats__table tr th svg {
+  margin: 10px auto; }
+
+.stats__table tr th,
+.stats__table tr td {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25); }
+
+.stats__table tr td {
+  padding: 20px; }
+
 .footer {
   max-width: 1000px;
   margin: auto;
@@ -460,11 +477,13 @@ template {
 
 @font-face {
   font-family: 'AlrightSans-Light';
-  src: url("/fonts/AlrightSans-Light.oft") format("oft"); }
+  src: url("/fonts/AlrightSans-Light.oft") format("oft");
+  font-weight: 200; }
 
 @font-face {
   font-family: 'AlrightSans-Medium';
-  src: url("/fonts/AlrightSans-Medium.oft") format("oft"); }
+  src: url("/fonts/AlrightSans-Medium.oft") format("oft");
+  font-weight: 500; }
 
 html {
   font-size: 10px; }
@@ -521,6 +540,20 @@ p {
 
 .introduction p {
   font-family: 'AlrightSans-Light';
+  font-size: 1.5em; }
+
+.stats__table {
+  text-align: center; }
+
+.stats__table tr th {
+  font-family: 'AlrightSans-Light';
+  font-size: 1.25em; }
+
+.stats__table tr th i {
+  display: block; }
+
+.stats__table tr td {
+  font-family: 'AlrightSans-Medium';
   font-size: 1.5em; }
 
 .title--single {

@@ -1,0 +1,20 @@
+mixin siteStats(numOfStores, numOfUsers, numOfReviews)
+    table.stats__table
+        tr
+            th
+                i.fas.fa-map-marker.fa-lg
+                br 
+                | # of Places Hunted
+            th
+                i.fas.fa-user.fa-lg
+                br 
+                | # of Users Hunting
+            th
+                i.fas.fa-comments.fa-lg
+                br 
+                | # of Engagements
+        tr
+            td= numOfStores
+            td= numOfUsers
+            td= numOfReviews
+
