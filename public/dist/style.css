@@ -572,13 +572,55 @@ p.copyright {
 input, textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #e6e6e6; }
+  border: 2px solid #e6e6e6; }
   input.input--error, textarea.input--error {
     border-color: red; }
 
+input[type=text], input[type=file],
+input[type=email], input[type=password],
+textarea {
+  margin: -5px auto 20px auto;
+  border-radius: 3px;
+  transition: 0.15s; }
+
+input[type=email]
+input[type=password]
+input[type=text]:active,
+input[type=text]:focus,
+input[type=file]:active,
+input[type=file]:focus,
+input[type=email]:active,
+input[type=email]:focus,
+input[type=password]:active,
+input[type=password]:focus,
+textarea:active,
+textarea:focus {
+  outline: none;
+  border: 2px solid #FFC40E; }
+
+input[disabled=disabled] {
+  background-color: #e6e6e6; }
+
+input[type=file]:hover, .tag label:hover {
+  cursor: pointer; }
+
+textarea {
+  resize: none;
+  height: 250px; }
+
 label {
   padding: 10px 0;
-  display: block; }
+  display: block;
+  font-family: 'AlrightSans-Medium'; }
+
+form.form label, form.card label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8em; }
+
+.tag label {
+  text-transform: capitalize !important;
+  letter-spacing: initial !important; }
 
 .form {
   background: white;
@@ -1201,10 +1243,17 @@ label {
 
 .button {
   border: 0;
+  border-radius: 3px;
   background: #FFC40E;
   color: #303030;
   font-family: 'Panama';
-  font-weight: 600; }
+  font-weight: 600;
+  margin-top: 25px;
+  transition: 0.3s; }
+
+.button:hover {
+  cursor: pointer;
+  opacity: 0.9; }
 
 .avatar {
   min-width: 50px;

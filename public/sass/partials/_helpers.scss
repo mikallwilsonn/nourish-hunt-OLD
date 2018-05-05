@@ -5,10 +5,18 @@
 
 .button {
   border: 0;
+  border-radius:3px;
   background: $yellow;
   color: $black;
   font-family: 'Panama';
   font-weight: 600;
+  margin-top:25px;
+  transition:0.3s;
+}
+
+.button:hover {
+  cursor:pointer;
+  opacity:0.9;
 }
 
 .avatar {
