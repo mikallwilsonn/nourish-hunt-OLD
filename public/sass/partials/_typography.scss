@@ -10,7 +10,7 @@
 @font-face {
   font-family: 'AlrightSans-Light';
   src: url('/fonts/AlrightSans-Light.oft') format('oft');
-  font-weight:200;
+  font-weight:200 !important;
 }
 
 @font-face {
@@ -94,6 +94,7 @@ p {
 
 .stats__table tr th {
   font-family: 'AlrightSans-Light';
+  font-weight:200;
   font-size:1.25em;
 }
 
