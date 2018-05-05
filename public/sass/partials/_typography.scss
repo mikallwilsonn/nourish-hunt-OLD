@@ -80,12 +80,18 @@ p {
     $yellowa: rgba($yellow,0.8);
     padding:2px 20px;
     background-image: linear-gradient(to right, $yellowa 100%, $yellowa 50%);
+    transition:0.3s;
+  }
+  a:hover {
+    $yellowa: rgba($yellow,1);
+    background-image: linear-gradient(to right, $yellowa 100%, $yellowa 100%);
   }
 }
 
 .introduction p {
   font-family: 'AlrightSans-Light';
   font-size:1.5em;
+  text-align:center;
 }
 
 .stats__table {
@@ -104,7 +110,7 @@ p {
 
 .stats__table tr td {
   font-family: 'AlrightSans-Medium';
-  font-size:1.5em;
+  font-size:3.5em;
 }
 
 .title--single {

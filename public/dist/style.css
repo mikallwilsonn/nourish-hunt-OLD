@@ -48,7 +48,8 @@ section.introduction div.bg-cover {
   border: 1px solid rgba(255, 255, 255, 0.25); }
 
 .stats__table tr td {
-  padding: 20px; }
+  padding: 20px;
+  padding-bottom: 40px; }
 
 .footer {
   max-width: 1000px;
@@ -536,11 +537,15 @@ p {
   .title a {
     border-bottom: 0;
     padding: 2px 20px;
-    background-image: linear-gradient(to right, rgba(255, 196, 14, 0.8) 100%, rgba(255, 196, 14, 0.8) 50%); }
+    background-image: linear-gradient(to right, rgba(255, 196, 14, 0.8) 100%, rgba(255, 196, 14, 0.8) 50%);
+    transition: 0.3s; }
+  .title a:hover {
+    background-image: linear-gradient(to right, #ffc40e 100%, #ffc40e 100%); }
 
 .introduction p {
   font-family: 'AlrightSans-Light';
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  text-align: center; }
 
 .stats__table {
   text-align: center; }
@@ -555,7 +560,7 @@ p {
 
 .stats__table tr td {
   font-family: 'AlrightSans-Medium';
-  font-size: 1.5em; }
+  font-size: 3.5em; }
 
 .title--single {
   max-width: 600px;
