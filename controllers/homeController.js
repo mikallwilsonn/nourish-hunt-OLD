@@ -13,26 +13,15 @@ exports.home = async ( req, res ) => {
     const countPromise = Store.count();
 
     const numOfStores = Store.count({}, function(err, count) {
-        if ( err || undefined ) {
-            console.log(numOfStores);
-            return 'N/A';
-        }
+        if ( err || undefined ) { return 'N/A'; }
         return count;
     });
     const numOfReviews = Review.count({}, function(err, count) {
-        if ( err || undefined) {
-            console.log(numOfReviews);
-            return 'N/A';
-        }
-
+        if ( err || undefined) { return 'N/A'; }
         return count;
     });
     const numOfUsers = User.count({}, function(err, count) {
-        if ( err || undefined ) {
-            console.log(numOfUsers);
-            return 'N/A';
-        }
-
+        if ( err || undefined ) { return 'N/A';  }
         return count;
     });
 
