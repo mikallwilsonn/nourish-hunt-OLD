@@ -640,6 +640,9 @@ form.form label, form.card label {
     margin-bottom: 2rem;
     border-bottom: 1px solid #e6e6e6; }
 
+form.reviewer {
+  margin-top: 50px; }
+
 .search {
   position: relative;
   width: 100%;
@@ -883,6 +886,10 @@ form.form label, form.card label {
   -ms-transform: scale(1.05);
       transform: scale(1.05); }
 
+.store__description {
+  margin: 75px auto 25px auto;
+  padding: 10px auto; }
+
 .store__actions {
   position: relative;
   z-index: 2;
@@ -937,7 +944,7 @@ form.form label, form.card label {
 
 .store__details {
   margin: auto;
-  padding: 50px 25px 25px 25px;
+  padding: 25px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -947,6 +954,11 @@ form.form label, form.card label {
 
 .store__details ul.tags {
   margin: auto; }
+
+ul.tags {
+  margin-top: 50px;
+  padding: 25px !important;
+  background-color: rgba(128, 128, 128, 0.025); }
 
 .tags {
   margin: 0;
@@ -1052,7 +1064,7 @@ form.form label, form.card label {
 .single__location {
   margin: 0;
   margin-top: -3rem;
-  margin-right: -5rem;
+  margin-right: -3rem;
   background: #303030;
   color: white;
   display: inline-block;
@@ -1105,6 +1117,7 @@ form.form label, form.card label {
   border: 1px solid #e6e6e6;
   border-bottom: 0;
   border-bottom: 1px solid #e6e6e6;
+  margin-top: 50px;
   margin-bottom: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;

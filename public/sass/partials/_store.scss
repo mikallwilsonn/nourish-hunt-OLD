@@ -38,6 +38,11 @@
   transform: scale(1.05);
 }
 
+.store__description {
+  margin: 75px auto 25px auto;
+  padding:10px auto;
+}
+
 .store__actions {
   position: relative;
   z-index: 2;
@@ -101,7 +106,7 @@
 
 .store__details {
   margin:auto;
-  padding: 50px 25px 25px 25px;
+  padding: 25px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -111,3 +116,8 @@
   margin:auto;
 }
 
+ul.tags {
+  margin-top:50px;
+  padding: 25px !important;
+  background-color: rgba(128,128,128,0.025);
+}
