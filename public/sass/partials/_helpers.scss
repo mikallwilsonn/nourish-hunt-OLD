@@ -4,6 +4,7 @@
 }
 
 .button {
+  padding:15px 30px;
   border: 0;
   border-radius:3px;
   background: $yellow;
@@ -11,6 +12,7 @@
   font-family: 'Panama';
   font-weight: 600;
   margin-top:25px;
+  outline:none!important;
   transition:0.3s;
 }
 
