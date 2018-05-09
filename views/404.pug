@@ -1,5 +1,9 @@
 extends layout
 
 block content
-    .inner
-        h2 Whoa! That page does not exist!
+    .inner.error_page(style=`background-image:url(/uploads/${('store.jpg')})`)
+        .bg_cover
+            div
+                h1 404
+                h2 Whoa! That page does not exist!
+                a(href="#" onclick="history.back()") Want to go back?
