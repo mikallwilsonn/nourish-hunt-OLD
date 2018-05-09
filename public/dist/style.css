@@ -1123,6 +1123,26 @@ ul.tags {
     .single__location {
       margin-right: 0; } }
 
+.posted__by {
+  box-sizing: content-box;
+  margin-top: 50px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  font-family: 'AlrightSans-Medium'; }
+
+.posted__by img {
+  width: 50px;
+  margin: 0 25px 0 10px;
+  height: auto;
+  border-radius: 250px; }
+
+.posted__by p {
+  font-family: 'AlrightSans-Light'; }
+
 .heart__button {
   background: none;
   border: 0;
