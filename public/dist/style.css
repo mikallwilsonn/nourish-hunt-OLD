@@ -57,6 +57,54 @@ section.introduction div.bg-cover {
   margin-top: 50px;
   padding: 25px; }
 
+.error_page {
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box; }
+
+.inner.error_page {
+  padding: 0 !important; }
+
+.error_page .bg_cover {
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center; }
+
+.error_page .bg_cover > * {
+  color: #FFF; }
+
+.error_page .bg_cover div {
+  margin-top: 25px; }
+
+.error_page .bg_cover div h1 {
+  font-size: 20rem;
+  -ms-transform: rotate(25deg);
+      transform: rotate(25deg);
+  background: linear-gradient(0, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text; }
+
+.error_page .bg_cover div a {
+  color: #FFF;
+  text-decoration: none;
+  padding: 10px 35px;
+  border: 1px solid #FFF;
+  border-radius: 3px;
+  transition: 0.3s; }
+
+.error_page .bg_cover div a:hover {
+  opacity: 0.8; }
+
 html {
   box-sizing: border-box; }
 
