@@ -1385,26 +1385,59 @@ ul.tags {
   background: white;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05); }
-  .pagination__next {
-    -ms-flex: 0 0 auto;
-        flex: 0 0 auto;
-    padding: 1rem 3rem 1rem 1rem; }
-    .pagination__next a:after {
-      margin-left: 1rem;
-      content: '\2192'; }
-  .pagination__prev {
-    -ms-flex: 0 0 auto;
-        flex: 0 0 auto;
-    padding: 1rem 1rem 1rem 3rem; }
-    .pagination__prev a:before {
-      margin-right: 1rem;
-      content: '\2190'; }
-  .pagination__text {
-    -ms-flex: 3 0 auto;
-        flex: 3 0 auto;
-    padding: 1rem;
-    text-align: center; }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05); 
+}
+
+.pagination__next {
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+  padding: 1rem 3rem 1rem 1rem; 
+}
+
+.pagination__next a:after {
+  margin-left: 1rem;
+  content: '\2192'; 
+}
+
+.pagination__prev {
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+  padding: 1rem 1rem 1rem 3rem; 
+}
+
+.pagination__prev a:before {
+  margin-right: 1rem;
+  content: '\2190'; 
+}
+
+.pagination__next a,
+.pagination__prev a {
+  padding:10px 25px;
+  background-color:#FFC40E;
+  border-radius:3px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.pagination__next a:hover { padding-right:50px; } 
+.pagination__prev a:hover { padding-left:50px; } 
+
+.pagination__text {
+  -ms-flex: 3 0 auto;
+      flex: 3 0 auto;
+  padding: 1rem;
+  text-align: center; 
+}
+
+.pagination__text p {
+  font-weight:bold;
+  opacity:0.9;
+}
+
+.pagination__text p span {
+  opacity:0.75;
+  font-weight:normal;
+}
 
 .map {
   padding: 20px;
