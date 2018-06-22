@@ -1323,59 +1323,95 @@ ul.tags {
 .reviewer {
   position: relative;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2rem; }
-  .reviewer__stars {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center; }
-    .reviewer__stars input {
-      display: none; }
-      .reviewer__stars input:checked ~ label {
-        color: #FFC40E; }
-      .reviewer__stars input + label {
-        font-size: 0;
-        /* These are in the opposite DOM order
-           re-order them to be visually in normal order
-           This is fine for accessibility because our labels have for()
-         */ }
-        .reviewer__stars input + label:before {
-          content: '\2605';
-          font-size: 2rem; }
-        .reviewer__stars input + label[for="star5"] {
-          -ms-flex-order: 5;
-              order: 5; }
-        .reviewer__stars input + label[for="star4"] {
-          -ms-flex-order: 4;
-              order: 4; }
-        .reviewer__stars input + label[for="star3"] {
-          -ms-flex-order: 3;
-              order: 3; }
-        .reviewer__stars input + label[for="star2"] {
-          -ms-flex-order: 2;
-              order: 2; }
-        .reviewer__stars input + label[for="star1"] {
-          -ms-flex-order: 1;
-              order: 1; }
-        .reviewer__stars input + label:hover, .reviewer__stars input + label:hover ~ label {
-          color: #ffdd74; }
-  .reviewer textarea {
-    border: 0;
-    outline: 0;
-    font-size: 2rem;
-    padding: 2rem;
-    height: 200px; }
-  .reviewer__meta {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-        justify-content: center;
-    -ms-flex-align: center;
-        align-items: center;
-    border-top: 1px solid #e6e6e6; }
-    .reviewer__meta > * {
-      -ms-flex: 1;
-          flex: 1; }
+  margin-bottom: 2rem; 
+}
+
+.reviewer__stars {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center; 
+}
+
+.reviewer__stars input {
+  display: none; 
+}
+
+.reviewer__stars label:hover { cursor:pointer; }
+
+.reviewer__stars input:checked ~ label {
+  color: #FFC40E; 
+}
+
+.reviewer__stars input + label {
+  font-size: 0;
+  /* 
+    These are in the opposite DOM order
+    re-order them to be visually in normal order
+    This is fine for accessibility because our labels have for()
+  */ 
+}
+.reviewer__stars input + label:before {
+  content: '\2605';
+  font-size: 2rem; 
+}
+
+.reviewer__stars input + label[for="star5"] {
+  -ms-flex-order: 5;
+      order: 5; 
+}
+
+.reviewer__stars input + label[for="star4"] {
+  -ms-flex-order: 4;
+      order: 4; 
+}
+
+.reviewer__stars input + label[for="star3"] {
+  -ms-flex-order: 3;
+      order: 3; 
+}
+
+.reviewer__stars input + label[for="star2"] {
+  -ms-flex-order: 2;
+      order: 2; 
+}
+
+.reviewer__stars input + label[for="star1"] {
+  -ms-flex-order: 1;
+      order: 1; 
+}
+
+.reviewer__stars input + label:hover, .reviewer__stars input + label:hover ~ label {
+  color: #ffdd74; 
+}
+
+.reviewer textarea {
+  border: 0;
+  outline: 0;
+  font-size: 2rem;
+  padding: 2rem;
+  height: 200px; 
+}
+
+.reviewer__meta {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  border-top: 1px solid #e6e6e6;
+}
+
+.reviewer__meta input[type="submit"] {
+  margin-top:0!important;
+  border-radius:0 0 3px 0;
+}
+
+.reviewer__meta > * {
+  -ms-flex: 1;
+      flex: 1; 
+}
 
 .pagination {
   display: -ms-flexbox;
