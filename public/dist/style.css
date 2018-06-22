@@ -20,11 +20,12 @@ div.users {
 
 div.user {
   width: 100% !important;
-  margin:20px auto;
+  margin:10px auto;
   padding:25px;
   display:flex;
   flex-direction:row;
   align-items:center;
+  background-color:#FFF;
 }
 
 div.user:first-child {

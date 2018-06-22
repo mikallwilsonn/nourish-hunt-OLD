@@ -1,4 +1,6 @@
 mixin userCard(user = {})
     .user
         img(src=`${user.gravatar}`) 
-        p #{user.name}
+        div
+            p(style="font-weight:bold; font-size:1.5em;") #{user.name}
+            p #{user.profile}

@@ -13,6 +13,7 @@ exports.registerForm = ( req, res ) => {
 exports.validateRegister = ( req, res, next ) => {
     req.sanitizeBody( 'name' );
     req.checkBody( 'name', 'You must supply a name!').notEmpty();
+    req.sanitizeBody( 'profile' );
     req.checkBody( 'email', 'That Email is not valid!').isEmail();
     req.sanitizeBody( 'email' ).normalizeEmail({
         remove_dots: false,
@@ -36,7 +37,8 @@ exports.validateRegister = ( req, res, next ) => {
 exports.register = async ( req, res, next ) => {
     const user = new User({
         email: req.body.email,
-        name: req.body.name
+        name: req.body.name,
+        profile: req.body.profile
     });
     const register = promisify( User.register, User );
     await register( user, req.body.password );
@@ -50,7 +52,8 @@ exports.account = ( req, res ) => {
 exports.updateAccount = async ( req, res ) => {
     const updates = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        profile: req.body.profile
     };
 
     const user = await User.findOneAndUpdate( 
@@ -92,10 +95,4 @@ exports.getUsers = async ( req, res ) => {
     }
 
     res.render( 'users', { title: 'Users', users, page, pages, count } );
-}
-
-exports.getUserByName = async ( req, res, next ) => {
-    const user = await User.findOne( { name: req.params.name } );
-    if( !user ) return next();
-    res.render('user', {user, title: user.name})
 }
