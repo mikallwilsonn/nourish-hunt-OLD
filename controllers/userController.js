@@ -65,3 +65,31 @@ exports.updateAccount = async ( req, res ) => {
     req.flash('success', 'You successfully updated your account! 👊')
     res.redirect('back')
 }
+
+
+// ----
+// Browse Users
+exports.getUsers = async ( req, res ) => {
+    const page = req.params.page || 1;
+    const limit = 6;
+    const skip = ( page * limit ) - limit;
+
+    const usersPromise = User
+        .find()
+        .skip( skip )
+        .limit( limit )
+        .sort( {created: 'desc'} );
+
+    const countPromise = User.count();
+
+    const [users, count] = await Promise.all([usersPromise, countPromise]);
+
+    const pages = Math.ceil( count / limit );
+    if( !users.length && skip ) {
+        req.flash( 'info', `Hey! You requested ${page}. But, that doesn't exist. Here is the final page currently available: Page ${pages}`);
+        res.redirect( `/users/page/${pages}` );
+        return;
+    }
+
+    res.render( 'users', { title: 'Users', users, page, pages, count } );
+}

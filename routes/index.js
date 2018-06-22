@@ -6,7 +6,7 @@ const userController = require( '../controllers/userController' );
 const authController = require( '../controllers/authController' );
 const reviewController = require( '../controllers/reviewController' );
 
-const { catchErrors } = require('../handlers/errorHandlers');
+const { catchErrors } = require( '../handlers/errorHandlers' );
 
 //router.get( '/', catchErrors( storeController.getStores ) );
 router.get( '/', catchErrors( homeController.home ));
@@ -22,6 +22,7 @@ router.post( '/add',
     catchErrors( storeController.resize ),
     catchErrors( storeController.createStore )
 );
+
 router.post( '/add/:id', 
     storeController.upload,
     catchErrors( storeController.resize ),
@@ -79,6 +80,11 @@ router.post( '/reviews/:id',
 );
 
 router.get( '/top', catchErrors( storeController.getTopStores ));
+
+// ----
+// Browse Users
+router.get( '/users', catchErrors( userController.getUsers ) );
+router.get( '/userss/page/:page', catchErrors( userController.getUsers ) );
 
 /* 
     API endpionts
