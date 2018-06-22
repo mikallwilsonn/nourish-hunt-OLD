@@ -38,8 +38,24 @@ div.user:first-child {
   border-radius:250px;
 }
 
-.user p {
+.user div {
   margin-left:50px;
+}
+
+.user div p:first-child {
+  font-weight:bold; 
+  font-size:1.5em;
+}
+
+.user div nav a {
+  margin-right:10px;
+}
+
+.user div nav a.disabled-social {
+  opacity:0.5;
+  user-select:none;
+  cursor:default;
+  pointer-events: none;
 }
 
 .inner {

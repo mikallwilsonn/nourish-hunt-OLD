@@ -24,6 +24,18 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
+    social_facebook: {
+        type: String,
+        trim: true
+    },
+    social_twitter: {
+        type: String,
+        trim: true
+    },
+    social_instagram: {
+        type: String,
+        trim: true
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     hearts: [

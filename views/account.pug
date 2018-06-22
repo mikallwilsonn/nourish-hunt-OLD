@@ -6,8 +6,20 @@ block content
         form(action="/account" method="POST")
             label(for="name") Name
             input(type="text" name="name" value=user.name)
+
             label(for="profile") Profile
             textarea(type="text" name="profile") #{user.profile}
+
+            label(for="social_facebook") Facebook Profile URL
+            input(type="url" name="social_facebook" value=user.social_facebook)
+
+            label(for="social_twitter") Twitter Feed URL
+            input(type="url" name="social_twitter" value=user.social_twitter)
+
+            label(for="social_instagram") Instagram Feed URL
+            input(type="url" name="social_instagram" value=user.social_instagram)
+
             label(for="email") Email
             input(type="email" name="email" value=user.email)
+
             input.button(type="submit" value="Update My Account")

@@ -14,6 +14,9 @@ exports.validateRegister = ( req, res, next ) => {
     req.sanitizeBody( 'name' );
     req.checkBody( 'name', 'You must supply a name!').notEmpty();
     req.sanitizeBody( 'profile' );
+    req.sanitizeBody( 'social_facebook' );
+    req.sanitizeBody( 'social_twitter' );
+    req.sanitizeBody( 'social_instagram' );
     req.checkBody( 'email', 'That Email is not valid!').isEmail();
     req.sanitizeBody( 'email' ).normalizeEmail({
         remove_dots: false,
@@ -38,7 +41,10 @@ exports.register = async ( req, res, next ) => {
     const user = new User({
         email: req.body.email,
         name: req.body.name,
-        profile: req.body.profile
+        profile: req.body.profile,
+        social_facebook: req.body.social_facebook,
+        social_twitter: req.body.social_twitter,
+        social_instagram: req.body.social_instagram
     });
     const register = promisify( User.register, User );
     await register( user, req.body.password );
@@ -53,7 +59,10 @@ exports.updateAccount = async ( req, res ) => {
     const updates = {
         name: req.body.name,
         email: req.body.email,
-        profile: req.body.profile
+        profile: req.body.profile,
+        social_facebook: req.body.social_facebook,
+        social_twitter: req.body.social_twitter,
+        social_instagram: req.body.social_instagram
     };
 
     const user = await User.findOneAndUpdate( 
