@@ -13,6 +13,10 @@ exports.registerForm = ( req, res ) => {
 exports.validateRegister = ( req, res, next ) => {
     req.sanitizeBody( 'name' );
     req.checkBody( 'name', 'You must supply a name!').notEmpty();
+    req.sanitizeBody( 'profile' );
+    req.sanitizeBody( 'social_facebook' );
+    req.sanitizeBody( 'social_twitter' );
+    req.sanitizeBody( 'social_instagram' );
     req.checkBody( 'email', 'That Email is not valid!').isEmail();
     req.sanitizeBody( 'email' ).normalizeEmail({
         remove_dots: false,
@@ -36,7 +40,11 @@ exports.validateRegister = ( req, res, next ) => {
 exports.register = async ( req, res, next ) => {
     const user = new User({
         email: req.body.email,
-        name: req.body.name
+        name: req.body.name,
+        profile: req.body.profile,
+        social_facebook: req.body.social_facebook,
+        social_twitter: req.body.social_twitter,
+        social_instagram: req.body.social_instagram
     });
     const register = promisify( User.register, User );
     await register( user, req.body.password );
@@ -50,7 +58,11 @@ exports.account = ( req, res ) => {
 exports.updateAccount = async ( req, res ) => {
     const updates = {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        profile: req.body.profile,
+        social_facebook: req.body.social_facebook,
+        social_twitter: req.body.social_twitter,
+        social_instagram: req.body.social_instagram
     };
 
     const user = await User.findOneAndUpdate( 
@@ -64,4 +76,32 @@ exports.updateAccount = async ( req, res ) => {
     );
     req.flash('success', 'You successfully updated your account! 👊')
     res.redirect('back')
+}
+
+
+// ----
+// Browse Users
+exports.getUsers = async ( req, res ) => {
+    const page = req.params.page || 1;
+    const limit = 6;
+    const skip = ( page * limit ) - limit;
+
+    const usersPromise = User
+        .find()
+        .skip( skip )
+        .limit( limit )
+        .sort( {created: 'desc'} );
+
+    const countPromise = User.count();
+
+    const [users, count] = await Promise.all([usersPromise, countPromise]);
+
+    const pages = Math.ceil( count / limit );
+    if( !users.length && skip ) {
+        req.flash( 'info', `Hey! You requested ${page}. But, that doesn't exist. Here is the final page currently available: Page ${pages}`);
+        res.redirect( `/users/page/${pages}` );
+        return;
+    }
+
+    res.render( 'users', { title: 'Users', users, page, pages, count } );
 }

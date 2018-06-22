@@ -1,0 +1,14 @@
+extends layout
+
+include mixins/_userCard
+include mixins/_pagination
+
+block content
+    .inner
+        div.inner  
+        h2= title
+        .users
+            each user in users
+                +userCard(user)
+
+        +pagination(page, pages, count)

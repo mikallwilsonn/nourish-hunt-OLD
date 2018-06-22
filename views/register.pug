@@ -6,10 +6,26 @@ block content
             h2 Register
             label(for="name") Name
             input(type="text" name="name")
+
+            label(for="profile") Profile
+            textarea(type="text" name="profile")
+
+            label(for="social_facebook") Facebook Profile URL
+            input(type="url" name="social_facebook")
+
+            label(for="social_twitter") Twitter Feed URL
+            input(type="url" name="social_twitter")
+
+            label(for="social_instagram") Instagram Feed URL
+            input(type="url" name="social_instagram")
+
             label(for="email") Email Address
             input(type="email" name="email")
+
             label(for="passowrd") Password
             input(type="password" name="password")
+
             label(for="passowrd-confirm") Confirm Password
             input(type="password" name="password-confirm")
+
             input.button(type="submit" value="Register ->")

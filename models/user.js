@@ -20,6 +20,22 @@ const userSchema = new Schema({
         required: 'Please supply a name for the account.',
         trim: true
     },
+    profile: {
+        type: String,
+        trim: true
+    },
+    social_facebook: {
+        type: String,
+        trim: true
+    },
+    social_twitter: {
+        type: String,
+        trim: true
+    },
+    social_instagram: {
+        type: String,
+        trim: true
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     hearts: [
