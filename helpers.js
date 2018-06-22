@@ -22,7 +22,7 @@ exports.siteName = `NourisHunt`;
 
 exports.menu = [
   { slug: '/stores', title: 'Stores', icon: 'store', },
-  { slug: '/users', title: 'Users', icon: 'store'},
+  { slug: '/users', title: 'Users', icon: 'user'},
   { slug: '/tags', title: 'Tags', icon: 'tag', },
   { slug: '/top', title: 'Top', icon: 'top', },
   { slug: '/add', title: 'Add', icon: 'add', },

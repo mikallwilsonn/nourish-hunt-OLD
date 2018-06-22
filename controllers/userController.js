@@ -93,3 +93,9 @@ exports.getUsers = async ( req, res ) => {
 
     res.render( 'users', { title: 'Users', users, page, pages, count } );
 }
+
+exports.getUserByName = async ( req, res, next ) => {
+    const user = await User.findOne( { name: req.params.name } );
+    if( !user ) return next();
+    res.render('user', {user, title: user.name})
+}

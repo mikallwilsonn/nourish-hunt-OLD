@@ -12,6 +12,35 @@ body {
     height: 10px;
     width: 100%; }
 
+div.users {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+div.user {
+  width: 100% !important;
+  margin:20px auto;
+  padding:25px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+
+div.user:first-child {
+  margin-top:0;
+}
+
+.user img {
+  width:100px;
+  height:auto;
+  border-radius:250px;
+}
+
+.user p {
+  margin-left:50px;
+}
+
 .inner {
   max-width: 1000px;
   margin: 0 auto; }
@@ -820,6 +849,7 @@ form.reviewer {
     border-bottom: 5px solid transparent; }
     .nav__link svg {
       width: 40px;
+      height:auto;
       transition: all 0.2s;
       fill: white;
       margin-bottom: 1rem; }

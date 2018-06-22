@@ -84,7 +84,8 @@ router.get( '/top', catchErrors( storeController.getTopStores ));
 // ----
 // Browse Users
 router.get( '/users', catchErrors( userController.getUsers ) );
-router.get( '/userss/page/:page', catchErrors( userController.getUsers ) );
+router.get( '/users/page/:page', catchErrors( userController.getUsers ) );
+router.get( '/users/:slug', catchErrors( userController.getUserByName ) );
 
 /* 
     API endpionts
