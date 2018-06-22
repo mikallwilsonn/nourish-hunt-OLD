@@ -17,9 +17,11 @@ block content
         div.posted__by Locale hunted by: 
             img(src=`${store.author.gravatar}`) 
             p #{store.author.name}
+            
         p.store__description= store.description
+            
 
-        if store.tags
+        if store.tags.length > 0
             ul.tags
                 each tag in store.tags
                     li.tag
