@@ -18,8 +18,11 @@ block content
             img(src=`${store.author.gravatar}`) 
             p #{store.author.name}
             
-        div.details__and__tags    
-            p.store__description= store.description
+        div.details__and__tags
+            if store.tags.length === 0    
+                p.store__description(style="width:100% !important;")= store.description
+            else
+                p.store__description= store.description
             
 
             if store.tags.length > 0
