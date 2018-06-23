@@ -18,15 +18,16 @@ block content
             img(src=`${store.author.gravatar}`) 
             p #{store.author.name}
             
-        p.store__description= store.description
+        div.details__and__tags    
+            p.store__description= store.description
             
 
-        if store.tags.length > 0
-            ul.tags
-                each tag in store.tags
-                    li.tag
-                        a.tag__link(href=`/tags/${tag}`)
-                            span.tag__text ##{tag}
+            if store.tags.length > 0
+                ul.tags
+                    each tag in store.tags
+                        li.tag
+                            a.tag__link(href=`/tags/${tag}`)
+                                span.tag__text ##{tag}
         if user
             +reviewForm(store)
 
