@@ -26,7 +26,9 @@ block content
             
 
             if store.tags.length > 0
+                
                 ul.tags
+                    p Location Features
                     each tag in store.tags
                         li.tag
                             a.tag__link(href=`/tags/${tag}`)
