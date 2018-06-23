@@ -986,9 +986,33 @@ form.reviewer {
   -ms-transform: scale(1.05);
       transform: scale(1.05); }
 
+.details__and__tags {
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+
+.details__and__tags p.store__description {
+  width:55%;
+}
+
+.details__and__tags ul.tags {
+  width:30%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.details__and__tags ul.tags li {
+  width:auto;
+}
+
 .store__description {
   margin: 75px auto 25px auto;
-  padding: 10px auto; }
+  padding: 10px auto; 
+}
 
 .store__actions {
   position: relative;
