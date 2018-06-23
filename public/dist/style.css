@@ -1027,7 +1027,8 @@ form.reviewer {
   -ms-flex-align: center;
       align-items: center;
   -ms-flex-pack: distribute;
-      justify-content: space-around; }
+      justify-content: space-around; 
+}
 
 .store__action {
   font-size: 10px; }
