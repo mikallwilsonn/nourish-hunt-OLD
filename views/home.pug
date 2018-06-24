@@ -12,6 +12,11 @@ block content
                 br
                 +siteStats(storesNum, usersNum, reviewsNum)
 
+                if !user
+                    div.signup_CTA
+                        p Ready to share your favorite locales?
+                        a(href="/register") Sign Up Now
+
     .inner
         section
             h2 Recently Hunted Locales
