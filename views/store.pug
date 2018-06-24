@@ -82,3 +82,9 @@ block content
                 each review in store.reviews
                     .review
                         +review(review)
+        
+        
+        if user && store.author.equals(user._id)
+            .edit__store
+                a(href=`/stores/${store._id}/edit`)
+                    != h.icon('pencil')
