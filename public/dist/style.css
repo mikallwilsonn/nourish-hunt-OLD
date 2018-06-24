@@ -704,6 +704,12 @@ input[type=email]:active,
 input[type=email]:focus,
 input[type=password]:active,
 input[type=password]:focus,
+input[type=url]:active,
+input[type=url]:focus,
+input[type=email]:active,
+input[type=email]:focus,
+input[type=tel]:active,
+input[type=tel]:focus,
 textarea:active,
 textarea:focus {
   outline: none;
@@ -1283,6 +1289,35 @@ ul.tags p {
       margin-right: 0; 
     } 
 }
+
+nav.store__contact {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  align-items:center;
+  margin-top:25px;
+  padding:25px;
+  border-top: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+nav.store__contact.connect { justify-content:space-around; }
+
+nav.store__contact a {
+  opacity:0.8;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
+}
+
+nav.store__contact a:hover {
+  opacity:1;
+  transform:scale(1.025);
+}
+
+nav.store__contact a span { margin-top:10px; }
 
 .posted__by {
   box-sizing: content-box;

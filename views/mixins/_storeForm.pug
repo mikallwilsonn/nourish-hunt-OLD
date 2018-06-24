@@ -2,13 +2,56 @@ mixin storeForm( store = {} )
     form(action=`/add/${store._id || ''}` method="POST" class="card" enctype="multipart/form-data")
         label(for="name") Name
         input(type="text" name="name" value=store.name)
+
         label(for="description") Description
         textarea(name="description")= store.description
+
+        label(for="price_range") Price Range for this location
+        select(name="price_range")
+            option(value=1) 💰 (Economy)
+            option(value=2) 💰💰 (Affordable)
+            option(value=3) 💰💰💰 (Premium)
+            option(value=4) 💰💰💰💰 (Luxury)
+
+        hr
+
+        label(for="website") Website
+        input(type="url" name="website" value=store.website)
+
+        label(for="email") Email
+        input(type="email" name="email" value=store.email)
+
+        label(for="phone") Phone Number
+        input(type="tel" name="phone" value=store.phone)
+
+        label(for="sms") SMS
+        input(type="tel" name="sms" value=store.sms)
+
+        label(for="messenger") Messenger
+        input(type="text" name="messenger" value=store.messenger)
+
+        hr
+
+        label(for="contact_facebook") Facebook Profile
+        input(type="url" name="contact_facebook" value=store.contact_facebook)
+
+        label(for="contact_twitter") Twitter Feed
+        input(type="url" name="contact_twitter" value=store.contact_twitter)
+
+        label(for="contact_instagram") Instagram Profile
+        input(type="url" name="contact_instagram" value=store.contact_instagram)
+
+        label(for="contact_snapchat") Snapchat Account
+        input(type="url" name="contact_snapchat" value=store.contact_snapchat)
+
+        hr
+
         //-Image upload
         label(for="photo") Photo
         input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpg, image/jpeg")
         if store.photo
             img(src=`/uploads/${store.photo}`, alt=store.name width=200)
+
         //- Address, long and lat
         label(for="address") Address
         input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))
