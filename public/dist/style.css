@@ -1053,11 +1053,17 @@ input.search__input {
       width: calc(50% - 1.25em); } }
   @media all and (max-width: 550px) {
     .store {
-      width: 100%; } }
+      width: 100%; } 
+}
+
+.price_range {
+  text-align:center;
+}
 
 .store:hover {
   -ms-transform: scale(1.05);
-      transform: scale(1.05); }
+      transform: scale(1.05); 
+}
 
 .details__and__tags {
   width:100%;
