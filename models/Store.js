@@ -13,6 +13,45 @@ const storeSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    website: {
+        type: String,
+        trim: true
+    },
+    phone: {
+        type: String,
+        trim: true
+    },
+    email: {
+        type: String,
+        trim: true
+    },
+    sms: {
+        type: String,
+        trim: true
+    },
+    messenger: {
+        type: String,
+        trim: true
+    },
+    contact_facebook: {
+        type: String,
+        trim: true        
+    },
+    contact_twitter: {
+        type: String,
+        trim: true        
+    },
+    contact_instagram: {
+        type: String,
+        trim: true        
+    },
+    contact_snapchat: {
+        type: String,
+        trim: true        
+    },
+    price_range: {
+        type: Number
+    },
     tags: [String],
     created: {
         type: Date,
