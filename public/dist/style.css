@@ -1319,6 +1319,37 @@ nav.store__contact a:hover {
 
 nav.store__contact a span { margin-top:10px; }
 
+.edit__store {
+  box-sizing:content-box;
+  background-color:#FFC40E;
+  padding:5px;
+  height:50px;
+  width:50px;
+  border-radius:250px;
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  z-index:9999999;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-around;
+  transition:0.3s;
+  overflow:hidden;
+}
+
+.edit__store a { padding:50px; }
+
+.edit__store a svg {
+  width:35px !important;
+  height:auto !important;
+}
+
+.edit__store:hover {
+  background-color:#fa7676;
+  transform:scale(1.025);
+}
+
 .posted__by {
   box-sizing: content-box;
   margin-top: 50px;
