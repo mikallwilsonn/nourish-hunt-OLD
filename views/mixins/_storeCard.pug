@@ -35,3 +35,12 @@ mixin storeCard(store = {})
                         li.tag.tag__more
                             a.tag__link(href=`/store/${store.slug}`)
                                 span.tag__text + more!
+            div.price_range
+                if store.price_range === 1
+                    p 💰 (Economy)
+                else if store.price_range == 2
+                    p 💰💰 (Affordable)
+                else if store.price_range == 3
+                    p 💰💰💰 (Premium)
+                else if store.price_range == 4
+                    p 💰💰💰💰 (Luxury)
