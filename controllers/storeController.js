@@ -49,7 +49,7 @@ exports.createStore = async ( req, res ) => {
     const store = await (new Store( req.body )).save();
     await store.save();
     req.flash('success', `Successfully Created ${store.name}. Care to leave a review?`);
-    res.redirect( `/store/${store.slug}` );
+    res.redirect( `/stores/${store.slug}` );
 };
 
 exports.getStores = async ( req, res ) => {
@@ -103,7 +103,7 @@ exports.updateStore = async ( req, res ) => {
         runValidators: true, 
     }).exec();
     req.flash('success', `Successfully updated <strong>${store.name}</strong>. <a href="/stores/${store.slug}">View Store -></a>`);
-    res.redirect( `/stores/${store._id}` );
+    res.redirect( `/stores/${store.slug}` );
     // redirect to store and tell them it worked
 }
 

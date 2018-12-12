@@ -28,3 +28,8 @@ exports.menu = [
   { slug: '/add', title: 'Add', icon: 'add', },
   { slug: '/map', title: 'Map', icon: 'map', }
 ];
+
+
+// Time Formatting
+const moment = require( 'moment' );
+exports.formatTime = ( date ) => moment( date ).format( 'dddd, MMMM Do YYYY' );
