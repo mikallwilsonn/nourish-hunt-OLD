@@ -16,18 +16,18 @@ block content
         br
         div.posted__by Locale hunted by: 
             img(src=`${store.author.gravatar}`) 
-            p #{store.author.name} on #{store.created}
+            p #{store.author.name} on #{h.formatTime(store.created)}
         
         div
-            p Price Range
-            if store.price_range === 1
-                p 💰 (Economy)
-            else if store.price_range === 2
-                p 💰💰 (Affordable)
-            else if store.price_range === 3
-                p 💰💰💰 (Premium)
-            else if store.price_range === 4
-                p 💰💰💰💰 (Luxury)
+            p Price Range: 
+                if store.price_range === 1
+                    span 💰 (Economy)
+                else if store.price_range === 2
+                    span 💰💰 (Affordable)
+                else if store.price_range === 3
+                    span 💰💰💰 (Premium)
+                else if store.price_range === 4
+                    span 💰💰💰💰 (Luxury)
 
         nav.store__contact
             a(href=`https://www.google.com/maps/dir/Current+Location/${store.location.coordinates[1]},${store.location.coordinates[0]}` target="_blank")
