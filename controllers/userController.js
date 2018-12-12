@@ -1,5 +1,6 @@
 const mongoose = require( 'mongoose' );
 const User = mongoose.model( 'User' );
+const Invite = mongoose.model( 'Invite' );
 const promisify = require( 'es6-promisify' );
 
 exports.loginForm = ( req, res ) => {

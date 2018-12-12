@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .inner
+        h2 #{title}
+        br
+        hr
+        br
+        h3 Generate new Invite Key
+        form(action="/create-invite-key" method="POST")
+            label(for="email") Email
+            input(type="email" name="email" value='' placeholder='Enter Users Email')
+
+            input.button(type="submit" value="Generate New Key")
+
+        br
+        hr
+        br
+        if invite
+            h3 Use the following alphanumeric key to invite a new user
+            p Key: #{invite.key}
+            p Email: #{invite.email}

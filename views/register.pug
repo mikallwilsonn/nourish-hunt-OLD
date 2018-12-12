@@ -4,6 +4,11 @@ block content
     .inner
         form.form(action="/register" method="POST")
             h2 Register
+
+            label(for="name") Your Invite Key 
+                small Please email me to request an invite key. Registration is restricted for the purposes of this being just a demo.
+            input(type="text" name="key")
+
             label(for="name") Name
             input(type="text" name="name")
 

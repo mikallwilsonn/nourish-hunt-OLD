@@ -5,6 +5,7 @@ const storeController = require( '../controllers/storeController' );
 const userController = require( '../controllers/userController' );
 const authController = require( '../controllers/authController' );
 const reviewController = require( '../controllers/reviewController' );
+const adminController = require( '../controllers/adminController' );
 
 const { catchErrors } = require( '../handlers/errorHandlers' );
 
@@ -86,6 +87,12 @@ router.get( '/top', catchErrors( storeController.getTopStores ));
 router.get( '/users', catchErrors( userController.getUsers ) );
 router.get( '/users/page/:page', catchErrors( userController.getUsers ) );
 router.get( '/users/:slug', catchErrors( userController.getUserByName ) );
+
+
+// ----
+// Admin
+router.get( '/admin', catchErrors( adminController.admin ));
+router.post( '/create-invite-key', catchErrors( adminController.createInviteKey ));
 
 /* 
     API endpionts
