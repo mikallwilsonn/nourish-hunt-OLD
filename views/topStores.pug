@@ -13,10 +13,10 @@ block content
             each store, i in stores
                 tr
                     td 
-                        a(href=`/store/${store.slug}`)
+                        a(href=`/stores/${store.slug}`)
                             img(width=200 src=`/uploads/${store.photo || 'store.jpg'}` alt=store.name)
                     td #{i + 1}
-                    td: a(href=`/store/${store.slug}`)= store.name
+                    td: a(href=`/stores/${store.slug}`)= store.name
                     td #{store.reviews.length}
                     td #{Math.round(store.averageRating) * 10 / 10}
                     

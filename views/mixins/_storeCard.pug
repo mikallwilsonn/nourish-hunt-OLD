@@ -4,7 +4,7 @@ mixin storeCard(store = {})
             
             img(src=`/uploads/${store.photo || 'store.jpg'}`)
             h2.title
-                a(href=`/store/${store.slug}`) #{store.name}
+                a(href=`/stores/${store.slug}`) #{store.name}
         .store__details
             p= store.description.split(' ').slice(0, 25).join(' ')
             .store__actions
@@ -33,7 +33,7 @@ mixin storeCard(store = {})
                                 span.tag__text ##{tag}
                     if tagsLength > 5
                         li.tag.tag__more
-                            a.tag__link(href=`/store/${store.slug}`)
+                            a.tag__link(href=`/stores/${store.slug}`)
                                 span.tag__text + more!
             div.price_range
                 if store.price_range === 1
