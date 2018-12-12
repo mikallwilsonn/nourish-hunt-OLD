@@ -56,9 +56,9 @@ block content
 
         div.details__and__tags
             if store.tags.length === 0    
-                p.store__description(style="width:100% !important;")= store.description
+                p.store__description(style="width:100% !important;")= h.lineBreaks(store.description)
             else
-                p.store__description= store.description
+                p.store__description= h.lineBreaks(store.description)
 
             if store.tags.length > 0
                 ul.tags

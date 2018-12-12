@@ -33,3 +33,23 @@ exports.menu = [
 // Time Formatting
 const moment = require( 'moment' );
 exports.formatTime = ( date ) => moment( date ).format( 'dddd, MMMM Do YYYY' );
+
+
+// Line breaks
+exports.lineBreaks = ( text ) => {
+  text = text.replace( /(\r\n|\n|\r)/gm, '<br>' );
+  return text;
+}
+
+
+// Trim String
+exports.trimString = ( passedString, limit ) => {
+  passedString = passedString.toString();
+  let trimmedString = passedString.substring( 0, limit );
+
+  if ( passedString.length >= limit ) {
+    trimmedString = trimmedString + '...';
+  }
+
+  return trimmedString;
+}
