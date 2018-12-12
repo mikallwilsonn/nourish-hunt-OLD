@@ -44,11 +44,11 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-// // Passport JS is what we use to handle our logins
+/// // Passport JS is what we use to handle our logins
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+/// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
 app.use( flash() );
 
 // pass variables to our templates + all requests
@@ -65,15 +65,6 @@ app.use(( req, res, next ) => {
   req.login = promisify( req.login, req );
   next();
 });
-
-// Forest Admin
-app.use(require('forest-express-mongoose').init({
-  modelsDir: __dirname + '/models',
-  envSecret: process.env.FOREST_ENV_SECRET,
-  authSecret: process.env.FOREST_AUTH_SECRET,
-  mongoose: require( 'mongoose' )
-}));
-
 
 // After allllll that above middleware, we finally handle our own routes!
 app.use( '/', routes );
