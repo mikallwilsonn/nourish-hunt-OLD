@@ -768,6 +768,12 @@ form.form label, form.card label {
   box-shadow: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%); 
 }
 
+form label small {
+  display:block;
+  text-transform: none !important;
+  padding:5px 0;
+}
+
 .form + .form { margin-top: 4rem; }
 
 .form h2 {
