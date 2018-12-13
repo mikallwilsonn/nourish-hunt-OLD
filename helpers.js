@@ -21,12 +21,12 @@ exports.icon = ( name ) => fs.readFileSync( `./public/images/icons/${name}.svg` 
 exports.siteName = `NourisHunt`;
 
 exports.menu = [
-  { slug: '/stores', title: 'Stores', icon: 'store', },
-  { slug: '/users', title: 'Users', icon: 'user'},
-  { slug: '/tags', title: 'Tags', icon: 'tag', },
-  { slug: '/top', title: 'Top', icon: 'top', },
-  { slug: '/add', title: 'Add', icon: 'add', },
-  { slug: '/map', title: 'Map', icon: 'map', }
+  { slug: '/stores', title: 'Stores', icon: 'spoon-knife2', },
+  { slug: '/users', title: 'Users', icon: 'users'},
+  { slug: '/tags', title: 'Tags', icon: 'tags', },
+  { slug: '/top', title: 'Top', icon: 'trophy', },
+  { slug: '/add', title: 'Add', icon: 'plus-square', },
+  { slug: '/map', title: 'Map', icon: 'map2', }
 ];
 
 

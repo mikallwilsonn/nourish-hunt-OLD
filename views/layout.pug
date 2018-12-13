@@ -29,7 +29,7 @@ html
                 != h.icon('heart')
                 span.heart-count #{user.hearts && user.hearts.length}
               li.nav__item: a.nav__link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
-                != h.icon('logout')
+                != h.icon('logout2')
                 span Logout
 
               if user.role === 'admin'
