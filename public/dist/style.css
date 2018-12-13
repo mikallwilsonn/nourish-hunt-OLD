@@ -757,6 +757,8 @@ form.form label, form.card label {
   font-size: 0.8em; 
 }
 
+select[name="price_range"] { height:45px; }
+
 .tag label {
   text-transform: capitalize !important;
   letter-spacing: initial !important; 
