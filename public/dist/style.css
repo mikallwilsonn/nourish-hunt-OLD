@@ -1260,7 +1260,8 @@ ul.tags p {
 .tag__more .tag__link { background-color:#DDD !important; }
 
 .single__hero {
-  height: 500px;
+  height: 600px;
+  padding:50px 0;
   position: relative;
   overflow: hidden;
   display: -ms-flexbox;
@@ -1322,15 +1323,27 @@ ul.tags p {
     } 
 }
 
+div.store__contact--wrapper {
+  margin-top:50px;
+  padding:25px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background-color: rgba(128, 128, 128, 0.025);
+}
+
+div.store__contact--wrapper p {
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  opacity:0.8;
+}
+
 nav.store__contact {
   display:flex;
   flex-direction:row;
   justify-content:space-around;
   align-items:center;
-  margin-top:25px;
   padding:25px;
-  border-top: 1px solid rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(0,0,0,0.25);
 }
 
 nav.store__contact.connect { justify-content:space-around; }

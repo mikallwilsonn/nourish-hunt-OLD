@@ -37,7 +37,7 @@ exports.formatTime = ( date ) => moment( date ).format( 'dddd, MMMM Do YYYY' );
 
 // Line breaks
 exports.lineBreaks = ( text ) => {
-  text = text.replace( /(\r\n|\n|\r)/gm, '<br>' );
+  text = text.replace( /(\r\n|\n|\r)/gm, '<br />' );
   return text;
 }
 

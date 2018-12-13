@@ -14,12 +14,14 @@ block content
         img.single__map(src=h.staticMap(store.location.coordinates))
         p.single__location= store.location.address
         br
-        div.posted__by Locale hunted by: 
+        div.posted__by 
+            strong Locale hunted by: 
             img(src=`${store.author.gravatar}`) 
             p #{store.author.name} on #{h.formatTime(store.created)}
         
         div
-            p Price Range: 
+            p 
+                strong Price Range: 
                 if store.price_range === 1
                     span 💰 (Economy)
                 else if store.price_range === 2
@@ -29,36 +31,39 @@ block content
                 else if store.price_range === 4
                     span 💰💰💰💰 (Luxury)
 
-        nav.store__contact
-            a(href=`https://www.google.com/maps/dir/Current+Location/${store.location.coordinates[1]},${store.location.coordinates[0]}` target="_blank")
-                i(class="fas fa-map-marker-alt fa-2x")
-                span Get Directions
-            if store.website
-                a(href=store.website target="_blank")
-                    i(class="fas fa-globe fa-2x")
-                    span= store.website
-            if store.email
-                a(href=`mailto:${store.email}`)
-                    i(class="fas fa-envelope fa-2x")
-                    span= store.email
-            if store.phone
-                a(href=`tel:${store.phone}`)
-                    i(class="fas fa-phone fa-2x")
-                    span= store.phone
-            if store.phone
-                a(href=`sms:${store.sms}`)
-                    i(class="fas fa-comment-alt fa-2x")
-                    span= store.sms
-            if store.messenger
-                a(href=store.messenger target="_blank")
-                    i(class="fab fa-facebook-messenger fa-2x")
-                    span= store.messenger
+        div.store__contact--wrapper
+            p 
+                strong Plan Your Next Visit
+            nav.store__contact
+                a(href=`https://www.google.com/maps/dir/Current+Location/${store.location.coordinates[1]},${store.location.coordinates[0]}` target="_blank")
+                    i(class="fas fa-map-marker-alt fa-2x")
+                    span Get Directions
+                if store.website
+                    a(href=store.website target="_blank")
+                        i(class="fas fa-globe fa-2x")
+                        span= store.website
+                if store.email
+                    a(href=`mailto:${store.email}`)
+                        i(class="fas fa-envelope fa-2x")
+                        span= store.email
+                if store.phone
+                    a(href=`tel:${store.phone}`)
+                        i(class="fas fa-phone fa-2x")
+                        span= store.phone
+                if store.sms
+                    a(href=`sms:${store.sms}`)
+                        i(class="fas fa-comment-alt fa-2x")
+                        span= store.sms
+                if store.messenger
+                    a(href=store.messenger target="_blank")
+                        i(class="fab fa-facebook-messenger fa-2x")
+                        span= store.messenger
 
         div.details__and__tags
             if store.tags.length === 0    
-                p.store__description(style="width:100% !important;")= h.lineBreaks(store.description)
+                p.store__description(style="width:100% !important;")= store.description
             else
-                p.store__description= h.lineBreaks(store.description)
+                p.store__description= store.description
 
             if store.tags.length > 0
                 ul.tags
@@ -68,22 +73,25 @@ block content
                             a.tag__link(href=`/tags/${tag}`)
                                 span.tag__text ##{tag}
 
-        nav.store__contact.connect
-            if store.contact_facebook
-                a(href=store.contact_facebook target="_blank")
-                    i(class="fab fa-facebook fa-2x")
+        div.store__contact--wrapper
+            p 
+                strong Connect with #{store.name}
+            nav.store__contact.connect
+                if store.contact_facebook
+                    a(href=store.contact_facebook target="_blank")
+                        i(class="fab fa-facebook fa-2x")
 
-            if store.contact_twitter
-                a(href=store.contact_twitter target="_blank")
-                    i(class="fab fa-twitter fa-2x")
+                if store.contact_twitter
+                    a(href=store.contact_twitter target="_blank")
+                        i(class="fab fa-twitter fa-2x")
 
-            if store.contact_instagram
-                a(href=store.contact_instagram target="_blank")
-                    i(class="fab fa-instagram fa-2x")
+                if store.contact_instagram
+                    a(href=store.contact_instagram target="_blank")
+                        i(class="fab fa-instagram fa-2x")
 
-            if store.contact_snapchat
-                a(href=store.contact_snapchat target="_blank")
-                    i(class="fab fa-snapchat fa-2x")
+                if store.contact_snapchat
+                    a(href=store.contact_snapchat target="_blank")
+                        i(class="fab fa-snapchat fa-2x")
 
         if user
             +reviewForm(store)
