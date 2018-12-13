@@ -15,6 +15,12 @@ const userSchema = new Schema({
         validate: [validator.isEmail, 'Invalid Email Address'],
         require: 'Please supply a valid email address'
     },
+    username: {
+        type: String,
+        trim: true, 
+        unique: true,
+        required: 'Please supply a username for the account.'
+    },
     name: {
         type: String,
         required: 'Please supply a name for the account.',

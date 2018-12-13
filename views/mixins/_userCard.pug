@@ -2,15 +2,29 @@ mixin userCard(user = {})
     .user
         img(src=`${user.gravatar}`) 
         div
-            p #{user.name}
+            p #{user.name} 
+                    span @#{user.username}
             p #{user.profile}
             nav
                 if !user.social_facebook == "" || !user.social_facebook == null
                     a(href=user.social_facebook target="_blank")
                         i.fab.fa-facebook-square.fa-lg
+                else
+                    a.disabled-social
+                        i.fab.fa-facebook-square.fa-lg
                 if !user.social_twitter == "" || !user.social_twitter == null
                     a(href=user.social_twitter target="_blank")
+                        i.fab.fa-twitter.fa-lg
+                else
+                    a.disabled-social
                         i.fab.fa-twitter.fa-lg
                 if !user.social_instagram == "" || !user.social_instagram == null
                     a(href=user.social_instagram target="_blank")
                         i.fab.fa-instagram.fa-lg
+                else
+                    a.disabled-social
+                        i.fab.fa-instagram.fa-lg
+
+            br
+            br
+            a(href=`/users/@${user.username}` class='button') View Hunted Locations
