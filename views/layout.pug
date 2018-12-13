@@ -2,12 +2,10 @@ doctype html
 html
   head
     title= `${title} | ${h.siteName}`
-    script(src='/dist/javascripts/pace.min.js')
     script(defer src='/fontawesome/svg-with-js/js/fontawesome-all.js')
     link(rel='stylesheet', href='/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(rel="stylesheet" href="/dist/pace-theme-minimal.css" )
   body
     block header
       header.top
@@ -31,7 +29,7 @@ html
                 != h.icon('heart')
                 span.heart-count #{user.hearts && user.hearts.length}
               li.nav__item: a.nav__link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
-                != h.icon('logout')
+                != h.icon('logout2')
                 span Logout
 
               if user.role === 'admin'
@@ -61,7 +59,9 @@ html
 
     block footer
       .footer
-        p.copyright Copyright &copy; 2018 NourishHunt. All Rights Reserved.
+        p.copyright Copyright &copy; 2018 Nourish Hunt. All Rights Reserved.
+          br 
+          span This is a fictional company/business and application meant for demo purposes only.
 
     block scripts
       script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)

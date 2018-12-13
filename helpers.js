@@ -21,15 +21,35 @@ exports.icon = ( name ) => fs.readFileSync( `./public/images/icons/${name}.svg` 
 exports.siteName = `NourisHunt`;
 
 exports.menu = [
-  { slug: '/stores', title: 'Stores', icon: 'store', },
-  { slug: '/users', title: 'Users', icon: 'user'},
-  { slug: '/tags', title: 'Tags', icon: 'tag', },
-  { slug: '/top', title: 'Top', icon: 'top', },
-  { slug: '/add', title: 'Add', icon: 'add', },
-  { slug: '/map', title: 'Map', icon: 'map', }
+  { slug: '/stores', title: 'Stores', icon: 'spoon-knife2', },
+  { slug: '/users', title: 'Users', icon: 'users'},
+  { slug: '/tags', title: 'Tags', icon: 'tags', },
+  { slug: '/top', title: 'Top', icon: 'trophy', },
+  { slug: '/add', title: 'Add', icon: 'plus-square', },
+  { slug: '/map', title: 'Map', icon: 'map2', }
 ];
 
 
 // Time Formatting
 const moment = require( 'moment' );
 exports.formatTime = ( date ) => moment( date ).format( 'dddd, MMMM Do YYYY' );
+
+
+// Line breaks
+exports.lineBreaks = ( text ) => {
+  text = text.replace( /(\r\n|\n|\r)/gm, '<br />' );
+  return text;
+}
+
+
+// Trim String
+exports.trimString = ( passedString, limit ) => {
+  passedString = passedString.toString();
+  let trimmedString = passedString.substring( 0, limit );
+
+  if ( passedString.length >= limit ) {
+    trimmedString = trimmedString + '...';
+  }
+
+  return trimmedString;
+}

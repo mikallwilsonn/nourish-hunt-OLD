@@ -6,6 +6,7 @@ include mixins/_pagination
 block content
     div.inner  
         h2= title
+        +pagination(page, pages, count)
         .stores
             each store in stores
                 +storeCard(store)
