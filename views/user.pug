@@ -1,5 +1,51 @@
 extends layout
 
+include mixins/_storeCard
+
 block content
     .inner
+        br
+
+        .users
+            .user
+                img(src=`${account.gravatar}`) 
+                div
+                    p #{account.name} 
+                            span @#{account.username}
+
+                    p #{account.profile}
+                    nav
+                        if !account.social_facebook == "" || !account.social_facebook == null
+                            a(href=account.social_facebook target="_blank")
+                                i.fab.fa-facebook-square.fa-lg
+                        else
+                            a.disabled-social
+                                i.fab.fa-facebook-square.fa-lg
+                        if !account.social_twitter == "" || !account.social_twitter == null
+                            a(href=account.social_twitter target="_blank")
+                                i.fab.fa-twitter.fa-lg
+                        else
+                            a.disabled-social
+                                i.fab.fa-twitter.fa-lg
+                        if !account.social_instagram == "" || !account.social_instagram == null
+                            a(href=account.social_instagram target="_blank")
+                                i.fab.fa-instagram.fa-lg
+                        else
+                            a.disabled-social
+                                i.fab.fa-instagram.fa-lg
+        
+        br
+
+        
+        if stores.length == 0
+            br
+            p #{account.name} has not hunted any locations yet.
+            br
+        else
+            br
+            p Locations hunted by #{account.name}:
+            br
+            .stores
+                each store in stores
+                    +storeCard(store)
         

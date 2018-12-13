@@ -17,7 +17,9 @@ block content
         div.posted__by 
             strong Locale hunted by: 
             img(src=`${store.author.gravatar}`) 
-            p #{store.author.name} on #{h.formatTime(store.created)}
+            p 
+                a(href=`/users/@${store.author.username}`) #{store.author.name} 
+                | on #{h.formatTime(store.created)}
         
         div
             p 

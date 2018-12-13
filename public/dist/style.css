@@ -48,10 +48,15 @@ div.user:first-child {
   font-size:1.5em;
 }
 
+.user div p:first-child span {
+  font-weight:normal;
+  opacity:0.5 !important;
+}
+
 .user div nav a { margin-right:10px; }
 
 .user div nav a.disabled-social {
-  opacity:0.5;
+  opacity:0.25;
   user-select:none;
   cursor:default;
   pointer-events: none;

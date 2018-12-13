@@ -47,6 +47,7 @@ router.get( '/register', userController.registerForm );
 // 2. Register the user
 // 3. We need to log them in
 router.post( '/register', 
+    userController.preRegisterCheckIfExists,
     userController.validateRegister,
     userController.register,
     authController.login
@@ -86,7 +87,8 @@ router.get( '/top', catchErrors( storeController.getTopStores ));
 // Browse Users
 router.get( '/users', catchErrors( userController.getUsers ) );
 router.get( '/users/page/:page', catchErrors( userController.getUsers ) );
-router.get( '/users/:slug', catchErrors( userController.getUserByName ) );
+
+router.get( '/users/@:username', catchErrors( userController.getUser ));
 
 
 // ----
