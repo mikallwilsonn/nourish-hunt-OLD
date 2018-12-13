@@ -8,6 +8,7 @@ block content
             h2 ##{tag}
         else 
             h2 #{title}
+            p Select a tag to begin browsing by tag.
         ul.tags
             each t in tags
                 li.tag
@@ -15,6 +16,7 @@ block content
                         span.tag__text= t._id
                         span.tag__count= t.count
         
-        .stores
-            each store in stores
-                +storeCard(store)
+        if tag
+            .stores
+                each store in stores
+                    +storeCard(store)

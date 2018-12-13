@@ -77,7 +77,7 @@ mixin storeForm( store = {} )
         input(type="text" id="lat" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1])  placeholder="Enter address above to populate the Latitude" required)
 
         p Please check all that apply:
-        - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetatian', 'Licensed', 'Takes Reservations', 'Delivery', 'Take-out', 'Accepts Credit Cards', 'Accepts Apple Pay', 'Accepts Google Pay', 'Accepts Crypto', 'Bike Parking', 'Wheelchair Accessbile', 'Good for Kids', 'Good for Groups', 'Mandatory Dress Code', 'Good for Dancing', 'Happy Hour', 'Coat Check', ' Smoking Section', 'Outdoor Seating', 'Dogs Allowed', 'Waiter Service', 'Caters', 'Has Pool Tables']
+        - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed', 'Takes Reservations', 'Delivery', 'Take-out', 'Accepts Credit Cards', 'Accepts Apple Pay', 'Accepts Google Pay', 'Accepts Crypto', 'Bike Parking', 'Wheelchair Accessbile', 'Good for Kids', 'Good for Groups', 'Mandatory Dress Code', 'Good for Dancing', 'Happy Hour', 'Coat Check', ' Smoking Section', 'Outdoor Seating', 'Dogs Allowed', 'Waiter Service', 'Caters', 'Has Pool Tables']
         - const tags = store.tags || []
         ul.tags(style="margin-top:10px;") 
             each choice in choices
