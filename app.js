@@ -12,6 +12,7 @@ const expressValidator = require( 'express-validator' );
 const routes = require( './routes/index' );
 const helpers = require( './helpers' );
 const errorHandlers = require( './handlers/errorHandlers' );
+const cloudinary = require( 'cloudinary' );
 require( './handlers/passport' );
 
 // create our Express app
@@ -64,6 +65,13 @@ app.use(( req, res, next ) => {
 app.use(( req, res, next ) => {
   req.login = promisify( req.login, req );
   next();
+});
+
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 // After allllll that above middleware, we finally handle our own routes!

@@ -4,6 +4,10 @@ const User = mongoose.model( 'User' );
 const multer = require( 'multer' );
 const jimp = require( 'jimp' );
 const uuid = require( 'uuid' );
+const cloudinary = require( 'cloudinary' );
+
+const mbxGeocoding = require( '@mapbox/mapbox-sdk/services/geocoding' );
+const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_KEY });
 
 const multerOptions = {
     storage: multer.memoryStorage(),
@@ -26,6 +30,7 @@ exports.addStore = ( req, res ) => {
     res.render( 'editStore', { title: 'Add Store' } );
 };
 
+/* -- OLD IMAGE UPLOAD */
 exports.upload = multer( multerOptions ).single( 'photo' );
 
 exports.resize = async ( req, res, next ) => {
@@ -43,14 +48,153 @@ exports.resize = async ( req, res, next ) => {
     // Once we have written the photo to our filesystem, keep going...
     next();
 };
+/* -- */
+
+
+exports.getStoreCover = multer( multerOptions ).single( 'photo' );
+exports.optimizeStoreCover = async ( req, res, next ) => {
+    if ( !req.file ) {
+        next();
+        return;
+    }
+
+    const photo = await jimp.read( req.file.buffer );
+    await photo.resize( 800, jimp.AUTO );
+    await photo.quality( 80 );
+    const photoMIME = photo.getMIME();
+
+    photo.getBuffer( photoMIME, ( error, result ) => {
+        if ( error ) {
+            req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+            res.render( 'editStore', {
+                title: 'Add Store',
+                body: req.body,
+                flashes: req.flash()
+            });
+            return;
+        }
+        req.body.storeCover_resized = result;
+        next();
+    });
+}
+
+exports.uploadStoreCover = async ( req, res, next ) => {
+    if ( !req.file ) {
+        next();
+        return;
+    }
+
+    cloudinaryOptions = {
+        resource_type: 'image',
+        folder: 'nourish-hunt/stores',
+        user_filename: true, 
+        unique_filename: true
+    }
+
+    await cloudinary.v2.uploader.upload_stream( cloudinaryOptions, 
+        (error, result) => {
+            if ( error ) {
+                req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+                res.render( 'editStore', {
+                    title: 'Add Store',
+                    body: req.body,
+                    flashes: req.flash()
+                });
+                return;
+            }
+
+            req.body.uploadedStoreCover = result;
+        }
+    ).end( req.body.storeCover_resized );
+}
 
 exports.createStore = async ( req, res ) => {
+
+    let storeCover;
+    let storeCover_id;
+
+    if ( req.body.uploadedStoreCover ) {
+        storeCover = req.body.uploadedStoreCover.secure_url;
+        storeCover_id = req.body.uploadedStoreCover.public_id;
+    } else {
+        storeCover = '/images/photos/defaultStoreCover.jpg';
+        storeCover_id = 'default';
+    }
+
+    let match;
+    await geocodingClient
+        .forwardGeocode({
+            query: req.body.location
+    })
+    .send()
+    .then( response => {
+        match = response.body;
+    })
+    .catch((error) => {
+        if ( error ) {
+            req.flash( 'error', 'Uh oh. An error has occured. Please wait a moment then try again..' );
+            res.render( 'editStore', {
+                title: 'Add Store',
+                body: req.body,
+                flashes: req.flash()
+            });
+            return;
+        }
+    });
+
+
+    req.body.location.coordinates[0] = match.features[0].geometry.coordinates[0];
+    req.body.location.coordinates[1] = match.features[0].geometry.coordinates[1];
+
+    req.body.photo = storeCover;
+    req.body.photo_id = storeCover_id;
     req.body.author = req.user._id;
     const store = await (new Store( req.body )).save();
     await store.save();
     req.flash('success', `Successfully Created ${store.name}. Care to leave a review?`);
     res.redirect( `/stores/${store.slug}` );
 };
+
+
+exports.createTest = async ( req, res ) => {
+    let storeCover;
+    let storeCover_id;
+
+    if ( req.body.uploadedStoreCover ) {
+        storeCover = req.body.uploadedStoreCover.secure_url;
+        storeCover_id = req.body.uploadedStoreCover.public_id;
+    } else {
+        storeCover = '/images/photos/defaultStoreCover.jpg';
+        storeCover_id = 'default';
+    }
+
+    let match;
+    
+    await geocodingClient
+        .forwardGeocode({
+            query: req.body.location
+    })
+    .send()
+    .then( response => {
+        match = response.body;
+    })
+    .catch((error) => {
+        match = error;
+    });
+
+
+    req.body.geocode_match = match;
+
+    req.body.photo = storeCover;
+    req.body.photo_id = storeCover_id;
+    req.body.author = req.user._id;
+
+    req.body.coordinates = match.features[0].geometry.coordinates;
+
+    const the_dump = req.body;
+
+    res.render( 'dump', { the_dump });
+}
 
 exports.getStores = async ( req, res ) => {
     const page = req.params.page || 1
