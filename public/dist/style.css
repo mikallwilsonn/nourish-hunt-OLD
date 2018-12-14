@@ -80,23 +80,37 @@ section.introduction p { color: #FFF; }
 section.introduction div.bg-cover {
   width: 100%;
   height: 100%;
-  padding: 100px 25px;
+  padding: 100px 25px 200px 25px;
   background-color: rgba(0, 0, 0, 0.75); 
+}
+
+div.stats_container {
+  background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
+  padding:25px;
+  border-radius:5px;
+  margin-top:-100px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .stats__table {
   width: 100%;
   color: #FFF;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   padding: 5px; 
 }
 
 .stats__table tr th svg { margin: 10px auto; }
 
+.stats__table tr th { 
+  text-transform: uppercase; 
+  letter-spacing:1.5px;
+}
+
 .stats__table tr th,
 .stats__table tr td {
   padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.25); 
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25); 
 }
 
 .stats__table tr td {
@@ -105,6 +119,7 @@ section.introduction div.bg-cover {
 }
 
 .signup_CTA { text-align:center; }
+.signup-CTA p { font-size: 1.5em; }
 
 .signup_CTA a {
   padding:15px 50px;
@@ -122,6 +137,19 @@ section.introduction div.bg-cover {
   background-color:#FFC40E;
   color:#000;
   transform: scale(1.1); 
+}
+
+div.site_description {
+  margin-top:50px;
+}
+
+div.site_description p {
+  font-size:1.2em;
+  opacity:0.9;
+}
+
+section.recent_locales {
+  margin-top:100px;
 }
 
 .footer {
