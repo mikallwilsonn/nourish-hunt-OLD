@@ -12,13 +12,14 @@ exports.moment = require( 'moment' );
 exports.dump = ( obj ) => JSON.stringify( obj, null, 2 );
 
 // Making a static map is really long - this is a handy helper function to make one
-exports.staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x250&key=${process.env.MAP_KEY}&markers=${lat},${lng}&scale=2`;
+exports.staticMap = ([lng, lat]) => `https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/pin-m-marker+ff3b00(${lng},${lat})/${lng},${lat},16.0,0,0/800x250@2x?access_token=${process.env.MAPBOX_KEY}`;
+
 
 // inserting an SVG
 exports.icon = ( name ) => fs.readFileSync( `./public/images/icons/${name}.svg` );
 
 // Some details about the site
-exports.siteName = `NourisHunt`;
+exports.siteName = `Nourish Hunt`;
 
 exports.menu = [
   { slug: '/stores', title: 'Stores', icon: 'spoon-knife2', },

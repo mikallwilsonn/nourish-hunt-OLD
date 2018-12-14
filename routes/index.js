@@ -18,11 +18,16 @@ router.get( '/add',
     storeController.addStore 
 );
 
+
 router.post( '/add',
-    storeController.upload,
-    catchErrors( storeController.resize ),
+    storeController.getStoreCover,
+    catchErrors( storeController.optimizeStoreCover ),
+    catchErrors( storeController.uploadStoreCover ),
     catchErrors( storeController.createStore )
 );
+
+//router.post( '/add', storeController.createTest );
+
 
 router.post( '/add/:id', 
     storeController.upload,

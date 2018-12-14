@@ -70,11 +70,7 @@ mixin storeForm( store = {} )
 
         //- Address, long and lat
         label(for="address") Address
-        input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))
-        label(for="lng") Address Longitude
-        input(type="text" id="lng" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]) placeholder="Enter address above to populate the Longitude" required)
-        label(for="lat") Address Latitude
-        input(type="text" id="lat" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1])  placeholder="Enter address above to populate the Latitude" required)
+        input(type="text" id="address" name="location" value=(store.location && store.location.address))
 
         p Please check all that apply:
         - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian/Vegan', 'Licensed', 'Takes Reservations', 'Delivery', 'Take-out', 'Accepts Credit Cards', 'Accepts Apple Pay', 'Accepts Google Pay', 'Accepts Crypto', 'Has ATM', 'Cash Only', 'Bike Parking', 'Wheelchair Accessbile', 'Good for Kids', 'Good for Groups', 'Mandatory Dress Code', 'Good for Dancing', 'Happy Hour', 'Coat Check', ' Smoking Section', 'Outdoor Seating', 'Dogs Allowed', 'Waiter Service', 'Caters', 'Has Pool Tables']
