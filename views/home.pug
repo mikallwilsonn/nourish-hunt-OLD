@@ -8,18 +8,38 @@ block content
         div.bg-cover
             .inner
                 != h.icon('logo')
-                p NourishHunt surfaces the best new locations, every day. It's a place for food and drink-loving enthusiasts to share and engage with others on their favorite places to go.
                 br
-                +siteStats(storesNum, usersNum, reviewsNum)
+                
 
                 if !user
                     div.signup_CTA
                         p Ready to share your favorite locales?
                         a(href="/register") Sign Up Now
+                else
+                    div.signup_CTA 
+                        p Found anywhere new and exciting?
+                        a(href="/add") Post It Now
 
     .inner
-        section
+        div.stats_container 
+            +siteStats(storesNum, usersNum, reviewsNum)
+
+        div.site_description
+            p Nourish Hunt is a 
+                em fictional site 
+                | that surfaces the best new locations for you, friends and family to checkout everyday. It's a place for food and drink-loving enthusiasts to share and engage with others on their favorite places to go.
+
+            p Nourish Hunt isn't just another directory. Locations are posted by the patrons themselves. So, you know when you see a location that there will be something to be said by those who've actually visited. Have fun!
+
+        br
+        section.recent_locales
             h2 Recently Hunted Locales
             .stores
                 each store in stores
                     +storeCard(store)
+
+        br
+        if !user
+            div.signup_CTA
+                p Ready to share your favorite locales?
+                a(href="/register") Sign Up Now
