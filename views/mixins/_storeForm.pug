@@ -28,7 +28,8 @@ mixin storeForm( store = {} )
             else
                 option(value=4) 💰💰💰💰 (Luxury)
 
-
+        br
+        br
         hr
 
         label(for="website") Website
@@ -46,6 +47,7 @@ mixin storeForm( store = {} )
         label(for="messenger") Messenger
         input(type="text" name="messenger" value=store.messenger)
 
+        br
         hr
 
         label(for="contact_facebook") Facebook Profile
@@ -60,6 +62,8 @@ mixin storeForm( store = {} )
         label(for="contact_snapchat") Snapchat Account
         input(type="url" name="contact_snapchat" value=store.contact_snapchat)
 
+        br
+        br
         hr
 
         //-Image upload
@@ -69,8 +73,8 @@ mixin storeForm( store = {} )
             img(src=`/uploads/${store.photo}`, alt=store.name width=200)
 
         //- Address, long and lat
-        label(for="address") Address
-        input(type="text" id="address" name="location" value=(store.location && store.location.address))
+        label(for="location_address") Address
+        input(type="text" id="location_address" name="location_address" value=(store.location && store.location.address))
 
         p Please check all that apply:
         - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian/Vegan', 'Licensed', 'Takes Reservations', 'Delivery', 'Take-out', 'Accepts Credit Cards', 'Accepts Apple Pay', 'Accepts Google Pay', 'Accepts Crypto', 'Has ATM', 'Cash Only', 'Bike Parking', 'Wheelchair Accessbile', 'Good for Kids', 'Good for Groups', 'Mandatory Dress Code', 'Good for Dancing', 'Happy Hour', 'Coat Check', ' Smoking Section', 'Outdoor Seating', 'Dogs Allowed', 'Waiter Service', 'Caters', 'Has Pool Tables']

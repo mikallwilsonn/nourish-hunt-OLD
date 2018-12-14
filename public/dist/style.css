@@ -762,6 +762,10 @@ form.form label, form.card label {
   font-size: 0.8em; 
 }
 
+form.card hr {
+  opacity:0.25;
+}
+
 select[name="price_range"] { height:45px; }
 
 .tag label {

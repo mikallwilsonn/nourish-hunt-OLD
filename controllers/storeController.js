@@ -61,9 +61,9 @@ exports.optimizeStoreCover = async ( req, res, next ) => {
     const photo = await jimp.read( req.file.buffer );
     await photo.resize( 800, jimp.AUTO );
     await photo.quality( 80 );
-    const photoMIME = photo.getMIME();
+    //const photoMIME = photo.getMIME();
 
-    photo.getBuffer( photoMIME, ( error, result ) => {
+    photo.getBuffer( req.file.mimetype, function( error, result ) {
         if ( error ) {
             req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
             res.render( 'editStore', {
@@ -104,6 +104,7 @@ exports.uploadStoreCover = async ( req, res, next ) => {
             }
 
             req.body.uploadedStoreCover = result;
+            next();
         }
     ).end( req.body.storeCover_resized );
 }
@@ -124,7 +125,7 @@ exports.createStore = async ( req, res ) => {
     let match;
     await geocodingClient
         .forwardGeocode({
-            query: req.body.location
+            query: req.body.location_address
     })
     .send()
     .then( response => {
@@ -142,13 +143,15 @@ exports.createStore = async ( req, res ) => {
         }
     });
 
-
-    req.body.location.coordinates[0] = match.features[0].geometry.coordinates[0];
-    req.body.location.coordinates[1] = match.features[0].geometry.coordinates[1];
+    req.body.location = {
+        coordinates: match.features[0].geometry.coordinates,
+        address: req.body.location_address
+    }
 
     req.body.photo = storeCover;
     req.body.photo_id = storeCover_id;
     req.body.author = req.user._id;
+    
     const store = await (new Store( req.body )).save();
     await store.save();
     req.flash('success', `Successfully Created ${store.name}. Care to leave a review?`);
