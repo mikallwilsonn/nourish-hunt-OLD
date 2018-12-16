@@ -1,4 +1,4 @@
-const mongoose = require( 'mongoose' );
+ const mongoose = require( 'mongoose' );
 const Store = mongoose.model( 'Store' );
 const User = mongoose.model( 'User' );
 const multer = require( 'multer' );
