@@ -26,8 +26,7 @@ exports.menu = [
   { slug: '/users', title: 'Users', icon: 'users'},
   { slug: '/tags', title: 'Tags', icon: 'tags', },
   { slug: '/top', title: 'Top', icon: 'trophy', },
-  { slug: '/add', title: 'Add', icon: 'plus-square', },
-  { slug: '/map', title: 'Map', icon: 'map2', }
+  { slug: '/add', title: 'Add', icon: 'plus-square', }
 ];
 
 
