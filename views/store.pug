@@ -16,7 +16,7 @@ block content
         br
         div.posted__by 
             strong Locale hunted by: 
-            img(src=`${store.author.gravatar}`) 
+            img(src=`${store.author.avatar}`) 
             p 
                 a(href=`/users/@${store.author.username}`) #{store.author.name} 
                 | on #{h.formatTime(store.created)}

@@ -3,6 +3,22 @@ const User = mongoose.model( 'User' );
 const Store = mongoose.model( 'Store' );
 const Invite = mongoose.model( 'Invite' );
 const promisify = require( 'es6-promisify' );
+const multer = require( 'multer' );
+const jimp = require( 'jimp' );
+const cloudinary = require( 'cloudinary' );
+
+
+const multerOptions = {
+    storage: multer.memoryStorage(),
+    fileFilter: ( req, file, next ) => {
+        const isPhoto = file.mimetype.startsWith('image/');
+        if( isPhoto ) {
+            next( null, true);
+        } else {
+            next( {message: 'That filetype isn\'t allowed!'}, false );
+        }
+    }
+};
 
 exports.loginForm = ( req, res ) => {
     res.render( 'login', { title: 'Login Form' } );
@@ -68,6 +84,59 @@ exports.validateRegister = ( req, res, next ) => {
     next();
 };
 
+exports.getUserAvatar = multer( multerOptions ).single( 'avatar' );
+exports.optimizeUserAvatar = async ( req, res, next ) => {
+    if ( !req.file ) {
+        next();
+        return;
+    }
+
+    const photo = await jimp.read( req.file.buffer );
+    await photo.resize( 500, jimp.AUTO );
+    await photo.quality( 80 );
+
+    photo.getBuffer( req.file.mimetype, function( error, result ) {
+        if ( error ) {
+            req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+            res.render( 'register', {
+                title: 'Register',
+                body: req.body,
+                flashes: req.flash()
+            });
+            return;
+        }
+        req.body.userAvatar_resized = result;
+        next();
+    });
+}
+exports.uploadUserAvatar = async ( req, res, next ) => {
+
+    cloudinaryOptions = {
+        resource_type: 'image',
+        folder: 'nourish-hunt/users',
+        user_filename: true, 
+        unique_filename: true
+    }
+
+    await cloudinary.v2.uploader.upload_stream( cloudinaryOptions, 
+        (error, result) => {
+            if ( error ) {
+                req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+                res.render( 'register', {
+                    title: 'Register',
+                    body: req.body,
+                    flashes: req.flash()
+                });
+                return;
+            }
+
+            req.body.uploadedUserAvatar = result;
+            next();
+        }
+    ).end( req.body.userAvatar_resized );
+}
+
+
 exports.register = async ( req, res, next ) => {
     const user = new User({
         email: req.body.email,
@@ -76,7 +145,9 @@ exports.register = async ( req, res, next ) => {
         profile: req.body.profile,
         social_facebook: req.body.social_facebook,
         social_twitter: req.body.social_twitter,
-        social_instagram: req.body.social_instagram
+        social_instagram: req.body.social_instagram,
+        avatar: req.body.uploadedUserAvatar.secure_url,
+        avatar_id: req.body.uploadedUserAvatar.public_id
     });
     const register = promisify( User.register, User );
     await register( user, req.body.password );
@@ -108,6 +179,85 @@ exports.updateAccount = async ( req, res ) => {
     );
     req.flash('success', 'You successfully updated your account! 👊')
     res.redirect('back')
+}
+
+
+exports.optimizeUpdatedUserAvatar = async ( req, res, next ) => {
+    if ( !req.file ) {
+        next();
+        return;
+    }
+
+    const photo = await jimp.read( req.file.buffer );
+    await photo.resize( 500, jimp.AUTO );
+    await photo.quality( 80 );
+
+    photo.getBuffer( req.file.mimetype, function( error, result ) {
+        if ( error ) {
+            req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+            res.render( 'register', {
+                title: 'Register',
+                body: req.body,
+                flashes: req.flash()
+            });
+            return;
+        }
+        req.body.userAvatar_resized = result;
+        next();
+    });
+}
+exports.uploadUpdatedUserAvatar = async ( req, res, next ) => {
+
+    cloudinaryOptions = {
+        resource_type: 'image',
+        folder: 'nourish-hunt/users',
+        user_filename: true, 
+        unique_filename: true
+    }
+
+    await cloudinary.v2.uploader.upload_stream( cloudinaryOptions, 
+        (error, result) => {
+            if ( error ) {
+                req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
+                res.render( 'register', {
+                    title: 'Register',
+                    body: req.body,
+                    flashes: req.flash()
+                });
+                return;
+            }
+
+            cloudinary.v2.api.delete_resources( req.user.avatar_id,
+                function( error, result ) {
+                    console.log( result );
+                }
+            );
+
+            req.body.uploadedUserAvatar = result;
+            next();
+        }
+    ).end( req.body.userAvatar_resized );
+}
+
+exports.saveNewUserAvatar = async ( req, res ) => {
+    const updates = {
+        avatar: req.body.uploadedUserAvatar.secure_url,
+        avatar_id: req.body.uploadedUserAvatar.public_id 
+    }
+
+    const user = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: updates },
+        {
+            new: true, 
+            runValidators: true,
+            context: 'query'
+        }
+    );
+
+    req.flash( 'success', 'You successfully uploaded a new avatar.' );
+    res.redirect( 'back' );
+
 }
 
 

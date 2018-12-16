@@ -50,6 +50,12 @@ const userSchema = new Schema({
     role: {
         type: String,
         defualt: 'member'
+    },
+    avatar: {
+        type: String
+    },
+    avatar_id: {
+        type: String
     }
 });
 
