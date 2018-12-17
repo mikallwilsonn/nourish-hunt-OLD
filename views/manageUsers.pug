@@ -1,0 +1,38 @@
+extends layout
+include mixins/_adminNav
+
+block content
+    .inner
+        h2 Admin
+        br
+        +adminNav
+        hr
+        br
+        h3 #{title}
+
+
+
+        table.table
+            thead
+                td ID
+                td Role
+                td Email
+                td Name
+                td Username
+                td Actions
+                td
+
+            each user in users
+                tr
+                    td= h.trimString(user._id, 10)
+                    td= user.role
+                    td= user.email
+                    td= user.name
+                    td= user.username
+
+                    td 
+                        form(action=`/users/@${user.username}` method="GET")
+                            input.button(type="submit" class="invite-accept" value="View User")
+                    td 
+                        form(action=`/admin/delete-user=${user._id}` method="POST")
+                            input.button(type="submit" class="invite-reject" value="Delete User")

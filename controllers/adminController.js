@@ -191,3 +191,32 @@ exports.manageInvites = async ( req, res ) => {
         invites: invites
     });  
 }
+
+
+// ----
+// Manage Users
+exports.manageUsers = async ( req, res ) => {
+    const users = await User.find();
+    res.render( 'manageUsers',  {
+        title: 'Manage Users',
+        users: users
+    });
+}
+
+
+// ----
+// Delete User
+exports.deleteUser = async ( req, res ) => {
+
+    if ( req.user._id === req.params.user_id ) {
+        req.flash( 'error', 'You cannot delete your own account.' );
+        res.redirect( 'back' );
+        return;
+    } else {
+        await User.findOneAndDelete({ _id: req.params.user_id });
+        req.flash( 'success', 'You successfully deleted the user account.' );
+        res.redirect( 'back' );
+        return;
+    }
+
+}

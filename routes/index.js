@@ -134,6 +134,16 @@ router.get( '/admin/manage-invites',
     adminController.manageInvites
 );
 
+router.get( '/admin/manage-users',
+    adminController.isAdminCheck,
+    adminController.manageUsers
+);
+
+router.post( '/admin/delete-user=:user_id', 
+    adminController.isAdminCheck,
+    adminController.deleteUser
+);
+
 /* 
     API endpionts
 */
