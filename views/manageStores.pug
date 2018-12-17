@@ -1,0 +1,36 @@
+extends layout
+include mixins/_adminNav
+
+block content
+    .inner
+        h2 Admin
+        br
+        +adminNav
+        hr
+        br
+        h3 #{title}
+
+
+
+        table.table
+            thead
+                td ID
+                td Name
+                td Slug
+                td Date Created
+                td Actions
+                td
+
+            each store in stores
+                tr
+                    td= h.trimString(store._id, 10)
+                    td= store.name
+                    td= store.slug
+                    td= h.formatTime(store.created)
+
+                    td 
+                        form(action=`/stores/${store.slug}` method="GET")
+                            input.button(type="submit" class="invite-accept" value="View Store")
+                    td 
+                        form(action=`/admin/delete-store=${store._id}` method="POST")
+                            input.button(type="submit" class="invite-reject" value="Delete Store")

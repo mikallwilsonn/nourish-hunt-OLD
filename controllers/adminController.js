@@ -3,9 +3,11 @@ const crypto = require( 'crypto' );
 const mongoose = require( 'mongoose' );
 const User = mongoose.model( 'User' );
 const Invite = mongoose.model( 'Invite' );
+const Store = mongoose.model( 'Store' );
+const Review = mongoose.model( 'Review' );
 const promisify = require( 'es6-promisify' );
 const uuidv5 = require( 'uuid/v5' );
-
+const cloudinary = require( 'cloudinary' );
 
 // ----
 // Check if current user is role: admin
@@ -225,6 +227,7 @@ exports.deleteUser = async ( req, res ) => {
         } else {
 
             await User.findOneAndDelete({ _id: req.params.user_id });
+            await Review
 
             await cloudinary.v2.api.delete_resources( userToDelete.avatar_id,
                 function( error, result ) {
@@ -234,10 +237,55 @@ exports.deleteUser = async ( req, res ) => {
                 }
             );
     
-            req.flash( 'success', 'You successfully deleted the user account.' );
+            req.flash( 'success', `You successfully deleted the user account for ${userToDelete.name}` );
             res.redirect( 'back' );
             return;
 
         }
     }
+}
+
+
+// ----
+// Manage Stores
+exports.manageStores = async ( req, res ) => {
+    const stores = await Store.find();
+    res.render( 'manageStores', {
+        title: 'Manage Stores',
+        stores: stores
+    });
+}
+
+
+// ----
+// Delete Store
+exports.deleteStore = async ( req, res ) => {
+
+    const storeToDelete = await Store.findOne({ _id: req.params.store_id });
+
+    if ( !storeToDelete ) {
+
+        req.flash( 'error', 'There was an error finding the store you are attempting to delete. Please try again.' );
+        res.redirect( 'back' );
+        return;
+
+    } else {
+
+        await Store.findOneAndDelete({ _id: req.params.store_id });
+        await Review.deleteMany({ store: req.params.store_id });
+
+        await cloudinary.v2.api.delete_resources( storeToDelete.photo_id,
+            function( error, result ) {
+                if ( error ) {
+                    req.flash( 'error', 'This users avatar could not be deleted. You will have to go and delete it manually.' );
+                }
+            }
+        );
+
+        req.flash( 'success', `You successfully deleted the store: ${storeToDelete.name}` );
+        res.redirect( 'back' );
+        return;
+
+    }
+    
 }
