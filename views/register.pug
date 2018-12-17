@@ -2,11 +2,11 @@ extends layout
 
 block content
     .inner
-        form.form(action="/register" method="POST")
+        form.form(action="/register" method="POST" enctype="multipart/form-data")
             h2 Register
 
-            label(for="name") Your Invite Key 
-            input(type="text" name="key")
+            label(for="key") Your Invite Key 
+            input(type="text" name="key" id="key")
             p Registration is restricted for the purposes of this being just a demo. To request an invite 
                 a(href='/request-invite') click here.
 

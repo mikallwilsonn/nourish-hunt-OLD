@@ -1,0 +1,28 @@
+extends layout
+include mixins/_adminNav
+
+block content
+    .inner
+        h2 Admin
+        br
+        +adminNav
+        hr
+        br
+        h3 #{title}
+
+
+
+        table.table
+            thead
+                td Key
+                td Email
+                td Action(s)
+                
+
+            each invite in invites
+                tr
+                    td= invite.key
+                    td= invite.email
+                    td 
+                        form(action=`/admin/reject-invite-request=${invite._id}` method="POST")
+                            input.button(type="submit" class="invite-reject" value="Delete Invite")

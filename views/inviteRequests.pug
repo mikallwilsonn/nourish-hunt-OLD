@@ -1,0 +1,29 @@
+extends layout
+include mixins/_adminNav
+
+block content
+    .inner
+        h2 Admin
+        br
+        +adminNav
+        hr
+        br
+        h3 #{title}
+
+
+
+        table.table
+            thead
+                td Email
+                td Actions
+                td
+
+            each request in requests
+                tr
+                    td= request.email
+                    td 
+                        form(action=`/admin/accept-invite-request=${request._id}` method="POST")
+                            input.button(type="submit" class="invite-accept" value="Accept Invite Request")
+                    td 
+                        form(action=`/admin/reject-invite-request=${request._id}` method="POST")
+                            input.button(type="submit" class="invite-reject" value="Reject Invite Request")
