@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .inner
+        h2 #{title}
+        br
+        hr
+
+        form(action="/request-invite" method="POST")
+            label(for="email") Email
+            input(type="email" name="email" id='email' placeholder='Enter Your Email')
+
+            input.button(type="submit" value="Submit Invite Request")
+

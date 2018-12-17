@@ -32,7 +32,8 @@ exports.createInviteKey = async ( req, res ) => {
     
                 const invite = {
                     key: new_key,
-                    email: req.body.email
+                    email: req.body.email,
+                    request: false
                 }
     
                 const newInvite = new Invite( invite );
@@ -43,18 +44,22 @@ exports.createInviteKey = async ( req, res ) => {
                     title: 'Admin',
                     invite: invite
                 });
+                return;
     
             } else {
                 req.flash( 'error', `You have already generated a key for this user. Invite key: ${invite_check.key}` );
                 res.redirect( 'back' );
+                return;
             }
         } else {
             req.flash( 'error', `There is alreadty a user with that email: ${req.body.email}` );
             res.redirect( 'back' );
+            return;
         }
     } else {
         req.flash( 'error', 'Sorry. You need to be a user admin to complete this action.' );
         res.redirect( '/' );
+        return;
     }
 
 }
@@ -75,6 +80,7 @@ exports.generateRequest = async ( req, res ) => {
         if ( !invite_check ) {
 
             const invite = {
+                key: '',
                 email: req.body.email,
                 request: true
             }
@@ -84,14 +90,17 @@ exports.generateRequest = async ( req, res ) => {
 
             req.flash( 'success', 'You sucessfully submitted your invite request. You will be notified by email if you\'re request has been accepted.' );
             res.redirect( '/');
+            return;
 
         } else {
             req.flash( 'error', `There is already a pending invite request for this email.` );
             res.redirect( 'back' );
+            return;
         }
 
     } else {
         req.flash( 'error', `There is alreadty a user with that email: ${req.body.email}` );
         res.redirect( 'back' );  
+        return;
     }
 }
