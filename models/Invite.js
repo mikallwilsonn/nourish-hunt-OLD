@@ -16,6 +16,9 @@ const inviteSchema = new Schema({
         type: String,
         trim: true,
         unique: true
+    },
+    request: {
+        type: Boolean
     }
 });
 

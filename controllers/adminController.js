@@ -58,3 +58,40 @@ exports.createInviteKey = async ( req, res ) => {
     }
 
 }
+
+
+exports.requestForm = ( req, res ) => {
+    res.render( 'request', {
+        title: 'Request An Invite'
+    });
+}
+
+exports.generateRequest = async ( req, res ) => {
+    const user_exists_check = await User.findOne({ email: req.body.email });
+
+    if ( !user_exists_check ){
+        const invite_check = await Invite.findOne({ email: req.body.email });
+
+        if ( !invite_check ) {
+
+            const invite = {
+                email: req.body.email,
+                request: true
+            }
+
+            const newInvite = new Invite( invite );
+            await newInvite.save();
+
+            req.flash( 'success', 'You sucessfully submitted your invite request. You will be notified by email if you\'re request has been accepted.' );
+            res.redirect( '/');
+
+        } else {
+            req.flash( 'error', `There is already a pending invite request for this email.` );
+            res.redirect( 'back' );
+        }
+
+    } else {
+        req.flash( 'error', `There is alreadty a user with that email: ${req.body.email}` );
+        res.redirect( 'back' );  
+    }
+}

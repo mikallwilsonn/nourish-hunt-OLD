@@ -109,6 +109,9 @@ router.get( '/users/@:username', catchErrors( userController.getUser ));
 router.get( '/admin', catchErrors( adminController.admin ));
 router.post( '/create-invite-key', catchErrors( adminController.createInviteKey ));
 
+router.get( '/request-invite', adminController.requestForm );
+router.post( '/request-invite', adminController.generateRequest );
+
 /* 
     API endpionts
 */
