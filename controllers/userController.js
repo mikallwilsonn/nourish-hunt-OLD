@@ -2,6 +2,7 @@ const mongoose = require( 'mongoose' );
 const User = mongoose.model( 'User' );
 const Store = mongoose.model( 'Store' );
 const Invite = mongoose.model( 'Invite' );
+const Review = mongoose.model( 'Review' );
 const promisify = require( 'es6-promisify' );
 const multer = require( 'multer' );
 const jimp = require( 'jimp' );
@@ -319,7 +320,8 @@ exports.getUser = async ( req, res ) => {
         res.redirect( '/' );
     }
 
-    const stores = await Store.find({ author: account._id });
+    const stores = await Store.find({ author: account._id }).limit( 2 );
+    const reviews = await Review.find({ author: account._id }).limit( 4 ).populate( 'store' );
 
     if ( !stores ) {
         req.flash( 'error', 'Sorry, no stores could be located for that user.' );
@@ -329,6 +331,47 @@ exports.getUser = async ( req, res ) => {
     res.render( 'user', {
         title: `Locations hunted by ${account.name}`,
         account: account,
+        stores: stores,
+        reviews: reviews
+    });
+}
+
+
+// ----
+// Get User Stores
+exports.getUserStores = async ( req, res ) => {
+    const account = await User.findOne({ username: req.params.username });
+
+    if ( !account ) {
+        req.flash( 'error', 'Sorry, could there was an issue finding stores for that user. Please double check the URL you are visiting and try again in a moment.' );
+        res.redirect( '/' );
+    }
+
+    const stores = await Store.find({ author: account._id });
+
+    res.render( 'userStores', {
+        title: `Locations hunted by ${account.name}`,
+        account: account,
         stores: stores
+    });
+}
+
+
+// ----
+// Get User Reviews
+exports.getUserReviews = async ( req, res ) => {
+    const account = await User.findOne({ username: req.params.username });
+
+    if ( !account ) {
+        req.flash( 'error', 'Sorry, could there was an issue finding stores for that user. Please double check the URL you are visiting and try again in a moment.' );
+        res.redirect( '/' );
+    }
+
+    const reviews = await Review.find({ author: account._id }).populate( 'store' );
+
+    res.render( 'userReviews', {
+        title: `Locations hunted by ${account.name}`,
+        account: account,
+        reviews: reviews
     });
 }

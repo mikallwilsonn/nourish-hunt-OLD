@@ -1,7 +1,6 @@
 extends layout
 
 include mixins/_storeCard
-include mixins/_review
 
 block content
     .inner
@@ -50,31 +49,10 @@ block content
             br
         else
             br
-            h4 
-                strong Locations recently hunted by #{account.name}:
+            p 
+                strong Recent locations hunted by #{account.name}:
             br
             .stores
                 each store in stores
                     +storeCard(store)
         
-        br 
-        hr
-        br
-
-        if reviews.length == 0
-            br
-            p #{account.name} has not written any reviews yet.
-            br
-        else
-            br
-            h4 
-                strong Reviews recently written by by #{account.name}:
-            br
-            .reviews
-                each review in reviews
-                    .review
-                        +review(review)
-                    p Review for 
-                        a(href=`/stores/${review.store.slug}`) #{review.store.name}
-
-                    hr(style="opacity:0.2")
