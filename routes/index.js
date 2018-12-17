@@ -103,6 +103,14 @@ router.get( '/users/page/:page', catchErrors( userController.getUsers ) );
 
 router.get( '/users/@:username', catchErrors( userController.getUser ));
 
+router.get(`/users/@:username/stores`,
+    userController.getUserStores
+);
+
+router.get(`/users/@:username/reviews`, 
+    userController.getUserReviews
+); 
+
 
 // ----
 // Admin
