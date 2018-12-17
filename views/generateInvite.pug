@@ -3,12 +3,12 @@ include mixins/_adminNav
 
 block content
     .inner
-        h2 #{title}
+        h2 Admin
         br
         +adminNav
         hr
         br
-        h3 Generate new Invite Key
+        h3 #{title}
         form(action="/create-invite-key" method="POST")
             label(for="email") Email
             input(type="email" name="email" value='' placeholder='Enter Users Email')

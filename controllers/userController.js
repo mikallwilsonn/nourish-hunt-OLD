@@ -30,29 +30,45 @@ exports.registerForm = ( req, res ) => {
 
 exports.preRegisterCheckIfExists = async ( req, res, next ) => {
 
-    const email_check = await User.findOne({ email: req.body.email });
+    const invite_check = await Invite.findOne({ key: req.body.key, email: req.body.email });
 
-    if ( email_check ) {
-        req.flash( 'error', `Sorry, but an account associated with the email ${req.body.email} already exists.` );
+    if ( !invite_check ) {
+
+        req.flash( 'error', `Sorry, but looks like the invite key or the email you provided was not valid. Please try again or request a new key.` );
         res.render( 'register', {
             title: 'Register',
             body: req.body,
             flashes: req.flash()
         });
+
+    } else {
+
+        const email_check = await User.findOne({ email: req.body.email });
+
+        if ( email_check ) {
+            req.flash( 'error', `Sorry, but an account associated with the email ${req.body.email} already exists.` );
+            res.render( 'register', {
+                title: 'Register',
+                body: req.body,
+                flashes: req.flash()
+            });
+        }
+    
+        const username_check = await User.findOne({ username: req.body.username });
+    
+        if ( username_check ) {
+            req.flash( 'error', `Sorry, but the username '${req.body.username}' already exists.` );
+            res.render( 'register', {
+                title: 'Register',
+                body: req.body,
+                flashes: req.flash()
+            });
+        }
+    
+        next();
+
     }
 
-    const username_check = await User.findOne({ username: req.body.username });
-
-    if ( username_check ) {
-        req.flash( 'error', `Sorry, but the username '${req.body.username}' already exists.` );
-        res.render( 'register', {
-            title: 'Register',
-            body: req.body,
-            flashes: req.flash()
-        });
-    }
-
-    next();
 }
 
 exports.validateRegister = ( req, res, next ) => {
@@ -91,11 +107,11 @@ exports.optimizeUserAvatar = async ( req, res, next ) => {
         return;
     }
 
-    const photo = await jimp.read( req.file.buffer );
-    await photo.resize( 500, jimp.AUTO );
-    await photo.quality( 80 );
+    const avatar = await jimp.read( req.file.buffer );
+    await avatar.resize( 500, jimp.AUTO );
+    await avatar.quality( 80 );
 
-    photo.getBuffer( req.file.mimetype, function( error, result ) {
+    avatar.getBuffer( req.file.mimetype, function( error, result ) {
         if ( error ) {
             req.flash( 'error', 'Uh oh. There was an error uploading your image. Please try again in a moment.' );
             res.render( 'register', {
@@ -151,6 +167,9 @@ exports.register = async ( req, res, next ) => {
     });
     const register = promisify( User.register, User );
     await register( user, req.body.password );
+
+    await Invite.deleteOne({ key: req.body.key });
+
     next();
 };
 

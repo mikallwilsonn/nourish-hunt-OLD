@@ -52,9 +52,9 @@ router.get( '/register', userController.registerForm );
 // 2. Register the user
 // 3. We need to log them in
 router.post( '/register', 
+    userController.getUserAvatar,
     userController.preRegisterCheckIfExists,
     userController.validateRegister,
-    userController.getUserAvatar,
     userController.optimizeUserAvatar,
     userController.uploadUserAvatar,
     userController.register,
@@ -106,11 +106,33 @@ router.get( '/users/@:username', catchErrors( userController.getUser ));
 
 // ----
 // Admin
-router.get( '/admin', catchErrors( adminController.admin ));
+router.get( '/admin',     
+    adminController.isAdminCheck,
+    adminController.generateInviteKeyForm
+);
+
+router.get( '/admin/generate-invite-key', 
+    adminController.isAdminCheck,
+    adminController.generateInviteKeyForm
+);
+
 router.post( '/create-invite-key', catchErrors( adminController.createInviteKey ));
+
+router.post( '/admin/accept-invite-request=:request_id', adminController.acceptInviteRequest );
+router.post( `/admin/reject-invite-request=:request_id`, adminController.rejectInviteRequest );
 
 router.get( '/request-invite', adminController.requestForm );
 router.post( '/request-invite', adminController.generateRequest );
+
+router.get( '/admin/invite-requests',
+    adminController.isAdminCheck,
+    adminController.getInviteRequests
+);
+
+router.get( '/admin/manage-invites',
+    adminController.isAdminCheck,
+    adminController.manageInvites
+);
 
 /* 
     API endpionts

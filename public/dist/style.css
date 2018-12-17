@@ -1777,4 +1777,24 @@ pre.error {
   white-space: pre-line; 
 }
 
+/* --- ----- --- */
+/* --- Admin --- */
+nav.admin__navigation {}
+nav.admin__navigation a {
+  padding:5px 10px;
+  margin-right:10px;
+  border-bottom: 2px solid rgba(255, 196, 14, 0);
+  transition:0.3s;
+}
+
+nav.admin__navigation a:hover {
+  border-bottom: 2px solid rgba(255, 196, 14, 1);
+}
+
+input.button.invite-accept { background-color: #48ded4; }
+
+input.button.invite-reject { background-color: #e82c75; }
+
+
+
 /*# sourceMappingURL=style.css.map*/
