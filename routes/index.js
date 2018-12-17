@@ -144,6 +144,16 @@ router.post( '/admin/delete-user=:user_id',
     adminController.deleteUser
 );
 
+router.get( '/admin/manage-stores',
+    adminController.isAdminCheck,
+    adminController.manageStores
+);
+
+router.post( '/admin/delete-store=:store_id', 
+    adminController.isAdminCheck,
+    adminController.deleteStore
+);
+
 /* 
     API endpionts
 */
