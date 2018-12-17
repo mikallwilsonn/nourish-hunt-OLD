@@ -191,3 +191,53 @@ exports.manageInvites = async ( req, res ) => {
         invites: invites
     });  
 }
+
+
+// ----
+// Manage Users
+exports.manageUsers = async ( req, res ) => {
+    const users = await User.find();
+    res.render( 'manageUsers',  {
+        title: 'Manage Users',
+        users: users
+    });
+}
+
+
+// ----
+// Delete User
+exports.deleteUser = async ( req, res ) => {
+
+    if ( req.user._id === req.params.user_id ) {
+        req.flash( 'error', 'You cannot delete your own account.' );
+        res.redirect( 'back' );
+        return;
+    } else {
+
+        const userToDelete = await User.findOne({ _id: req.params.user_id });
+
+        if ( !userToDelete ) {
+
+            req.flash( 'error', 'There was an error finding the user you are attempting to delete. Please try again.' );
+            res.redirect( 'back' );
+            return;
+
+        } else {
+
+            await User.findOneAndDelete({ _id: req.params.user_id });
+
+            await cloudinary.v2.api.delete_resources( userToDelete.avatar_id,
+                function( error, result ) {
+                    if ( error ) {
+                        req.flash( 'error', 'This users avatar could not be deleted. You will have to go and delete it manually.' );
+                    }
+                }
+            );
+    
+            req.flash( 'success', 'You successfully deleted the user account.' );
+            res.redirect( 'back' );
+            return;
+
+        }
+    }
+}
