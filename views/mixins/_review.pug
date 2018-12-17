@@ -2,7 +2,8 @@ mixin review(review)
     .review__header
         .review__author
             img.avatar(src=review.author.avatar)
-            p= review.author.name
+            p
+                a(href=`/users/@${review.author.username}`)= review.author.name
         .review__stars(title=`Rated ${review.rating} out of 5 stars`)
             = `⭐`.repeat(review.rating)
             = `☆`.repeat(5 - review.rating)
