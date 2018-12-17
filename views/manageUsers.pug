@@ -28,7 +28,7 @@ block content
                     td= user.role
                     td= user.email
                     td= user.name
-                    td= user.username
+                    td @#{user.username}
 
                     td 
                         form(action=`/users/@${user.username}` method="GET")

@@ -287,5 +287,41 @@ exports.deleteStore = async ( req, res ) => {
         return;
 
     }
-    
+}
+
+
+// ----
+// Manage Reviews
+exports.manageReviews = async ( req, res ) => {
+    const reviews = await Review
+        .find()
+        .populate( 'author' )
+        .populate( 'store' );
+
+    res.render( 'manageReviews', {
+        title: 'Manage Reviews',
+        reviews: reviews
+    });
+} 
+
+// ----
+// Delete Reviews
+exports.deleteReview = async ( req, res ) => {
+    const reviewToDelete = await Review.findOne({ _id: req.params.review_id });
+
+    if ( !reviewToDelete ) {
+
+        req.flash( 'error', 'There was an error finding the review you are attempting to delete. Please try again.' );
+        res.redirect( 'back' );
+        return;
+
+    } else {
+
+        await Review.findOneAndDelete({ _id: req.params.review_id });
+
+        req.flash( 'success', `You successfully deleted the review.` );
+        res.redirect( 'back' );
+        return;
+
+    }
 }

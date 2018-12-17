@@ -1792,8 +1792,12 @@ nav.admin__navigation a:hover {
 }
 
 input.button.invite-accept { background-color: #48ded4; }
-
 input.button.invite-reject { background-color: #e82c75; }
+
+input.button.invite-accept,
+input.button.invite-reject { transition:0.3s; }
+input.button.invite-accept:hover,
+input.button.invite-reject:hover { transform: scale(1.05); }
 
 
 
