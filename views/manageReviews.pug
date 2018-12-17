@@ -1,0 +1,38 @@
+extends layout
+include mixins/_adminNav
+
+block content
+    .inner
+        h2 Admin
+        br
+        +adminNav
+        hr
+        br
+        h3 #{title}
+
+
+
+        table.table
+            thead
+                td ID
+                td Author
+                td Store
+                td Content
+                td Date Created
+                td Actions
+                td
+
+            each review in reviews
+                tr
+                    td= h.trimString(review._id, 10)
+                    td= review.author.name
+                    td= review.store.name
+                    td= review.text
+                    td= h.formatTime(review.created)
+
+                    td 
+                        form(action=`/stores/${review.store.slug}` method="GET")
+                            input.button(type="submit" class="invite-accept" value="View Store")
+                    td 
+                        form(action=`/admin/delete-review=${review._id}` method="POST")
+                            input.button(type="submit" class="invite-reject" value="Delete Review")

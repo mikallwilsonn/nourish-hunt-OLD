@@ -162,6 +162,7 @@ exports.register = async ( req, res, next ) => {
         social_facebook: req.body.social_facebook,
         social_twitter: req.body.social_twitter,
         social_instagram: req.body.social_instagram,
+        role: 'member',
         avatar: req.body.uploadedUserAvatar.secure_url,
         avatar_id: req.body.uploadedUserAvatar.public_id
     });

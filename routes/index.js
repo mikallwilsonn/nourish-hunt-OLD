@@ -154,6 +154,16 @@ router.post( '/admin/delete-store=:store_id',
     adminController.deleteStore
 );
 
+router.get( '/admin/manage-reviews',
+    adminController.isAdminCheck,
+    adminController.manageReviews   
+);
+
+router.post( '/admin/delete-review=:review_id', 
+    adminController.isAdminCheck,
+    adminController.deleteReview
+);
+
 /* 
     API endpionts
 */
