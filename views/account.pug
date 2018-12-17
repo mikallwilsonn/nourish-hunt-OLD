@@ -24,3 +24,14 @@ block content
 
             input.button(type="submit" value="Update My Account")
 
+        br
+        hr
+        br
+        br
+        img(src=user.avatar height='250' width='250')
+        form(action='/update-user-avatar' method="POST" enctype="multipart/form-data")
+            label(for="avatar") Avatar
+            input(type="file" name="avatar" id="avatar" accept="image/gif, image/png, image/jpg, image/jpeg")
+            input.button(type="submit" value="Upload New Avatar")
+
+
