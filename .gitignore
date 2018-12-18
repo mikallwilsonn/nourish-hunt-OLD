@@ -4,6 +4,6 @@ node_modules/
 .DS_Store
 *.log
 .idea
-variables.env.now
+variables.env
 haters/
 public/uploads/**
