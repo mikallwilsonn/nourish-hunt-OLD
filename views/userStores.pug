@@ -38,8 +38,8 @@ block content
 
         nav.admin__navigation
             a(href=`/users/@${account.username}`) Recent Activity
-            a(href=`/users/@${account.username}/stores`) View All Hunted Locations
-            a(href=`/users/@${account.username}/reviews`) View All Reviews By #{account.name}
+            a(href=`/users/@${account.username}/stores`, class=(currentPath.startsWith(`/users/@${account.username}/stores`) ? 'admin__nav--active' : '')) View All Hunted Locations
+            a(href=`/users/@${account.username}/reviews`, class=(currentPath.startsWith(`/users/@${account.username}/reviews`) ? 'admin__nav--active' : '')) View All Reviews  
         hr
 
         
@@ -49,9 +49,7 @@ block content
             br
         else
             br
-            p 
-                strong Recent locations hunted by #{account.name}:
-            br
+            h4 Hunted Locations
             .stores
                 each store in stores
                     +storeCard(store)

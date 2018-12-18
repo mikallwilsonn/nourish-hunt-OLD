@@ -6,6 +6,9 @@ include mixins/_pagination
 block content
     div.inner  
         h2= title
+
+        div.page_heading(style=`background-image:url('/images/photos/store.jpg')`)
+
         +pagination(page, pages, count)
         .stores
             each store in stores

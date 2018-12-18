@@ -116,7 +116,9 @@ router.get(`/users/@:username/reviews`,
 // Admin
 router.get( '/admin',     
     adminController.isAdminCheck,
-    adminController.generateInviteKeyForm
+    ( req, res ) => {
+        res.redirect( '/admin/invite-requests' );
+    }
 );
 
 router.get( '/admin/generate-invite-key', 

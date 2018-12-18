@@ -36,7 +36,7 @@ div.user:first-child {
 }
 
 .user img {
-  width:100px;
+  width:200px;
   height:auto;
   border-radius:250px;
 }
@@ -65,6 +65,28 @@ div.user:first-child {
 .inner {
   max-width: 1000px;
   margin: 0 auto; 
+}
+
+div.page_heading {
+  height:300px;
+  background-size: cover;
+  background-position:center;
+  border-top:5px solid #FFC40E;
+}
+
+a.footer-logo {
+  opacity:0.5;
+  transition:0.3s;
+  margin:auto;
+}
+
+a.footer-logo svg {
+  width:200px !important;
+  height:auto !important;
+}
+
+a.footer-logo:hover {
+  opacity:1;
 }
 
 @media all and (max-width: 900px) { .inner { padding: 4rem 2rem; } }
@@ -157,6 +179,7 @@ section.recent_locales {
   margin: auto;
   margin-top: 50px;
   padding: 25px; 
+  text-align:center;
 }
 
 .error_page {
@@ -1007,6 +1030,10 @@ input.search__input {
   margin: 0; 
 }
 
+table.table thead td {
+  padding: 10px;
+}
+
 @media all and (max-width: 1200px) {
   .nav__link {
     padding-left: 1rem;
@@ -1779,9 +1806,10 @@ pre.error {
 
 /* --- ----- --- */
 /* --- Admin --- */
-nav.admin__navigation {}
+nav.admin__navigation {
+}
 nav.admin__navigation a {
-  padding:5px 10px;
+  padding:10px 25px;
   margin-right:10px;
   border-bottom: 2px solid rgba(255, 196, 14, 0);
   transition:0.3s;
@@ -1789,6 +1817,11 @@ nav.admin__navigation a {
 
 nav.admin__navigation a:hover {
   border-bottom: 2px solid rgba(255, 196, 14, 1);
+}
+
+a.admin__nav--active {
+  font-weight:bold;
+  border-bottom: 2px solid rgba(255, 196, 14, 1) !important;
 }
 
 input.button.invite-accept { background-color: #48ded4; }

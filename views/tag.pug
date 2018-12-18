@@ -8,7 +8,12 @@ block content
             h2 ##{tag}
         else 
             h2 #{title}
-            p Select a tag to begin browsing by tag.
+
+        div.page_heading(style=`background-image:url('/images/photos/tags.jpg')`)
+
+        if tag
+        else
+            p Select a tag to begin browsing by that tag:
         ul.tags
             each t in tags
                 li.tag
