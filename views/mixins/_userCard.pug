@@ -2,8 +2,9 @@ mixin userCard(user = {})
     .user
         img(src=`${user.avatar}`) 
         div
-            p #{user.name} 
-                    span @#{user.username}
+            a(href=`/users/@${user.username}`)
+                p #{user.name} 
+                        span @#{user.username}
             p #{user.profile}
             nav
                 if !user.social_facebook == "" || !user.social_facebook == null

@@ -1,8 +1,8 @@
 mixin adminNav()
     nav.admin__navigation
-        a(href='/admin/invite-requests') Invite Requests
-        a(href='/admin/generate-invite-key') Generate New Invite
-        a(href='/admin/manage-invites') Manage Invites
-        a(href='/admin/manage-stores') Manage Stores
-        a(href='/admin/manage-users') Manage Users
-        a(href='/admin/manage-reviews') Manage Reviews
+        a(href='/admin/invite-requests', class=(currentPath.startsWith('/admin/invite-requests') ? 'admin__nav--active' : '')) Invite Requests
+        a(href='/admin/generate-invite-key', class=(currentPath.startsWith('/admin/generate-invite-key') ? 'admin__nav--active' : '')) Generate New Invite
+        a(href='/admin/manage-invites', class=(currentPath.startsWith('/admin/manage-invites') ? 'admin__nav--active' : '')) Manage Invites
+        a(href='/admin/manage-stores', class=(currentPath.startsWith('/admin/manage-stores') ? 'admin__nav--active' : '')) Manage Stores
+        a(href='/admin/manage-users', class=(currentPath.startsWith('/admin/manage-users') ? 'admin__nav--active' : '')) Manage Users
+        a(href='/admin/manage-reviews', class=(currentPath.startsWith('/admin/manage-reviews') ? 'admin__nav--active' : '')) Manage Reviews
